@@ -1,0 +1,29 @@
+﻿@model VyatkinSchool.Models.News
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Школа борьбы Олега Вяткина</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    @using System.Web.Optimization
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    @Html.Partial("NavBarView")
+
+    @Html.Partial("SixNewsBox", @Model)
+
+    @Html.Partial("Footer")
+</body>
+</html>

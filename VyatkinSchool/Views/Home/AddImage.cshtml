@@ -1,0 +1,91 @@
+﻿@model VyatkinSchool.Models.GalleryManager
+
+@{
+    ViewBag.Title = "AddImage";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Школа борьбы: Загрузить изображение</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    @using System.Web.Optimization
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+
+<body>
+    @Html.Partial("NavBarView")
+
+
+            <div id="page">
+                <div class="container">
+                    <div class="title">
+                        <h2>Загрузить изображение</h2>
+                        <p>Выбирите изображени чтобы загрузить.</p>
+                        <div class="box">
+                            <div class="form-group" width="100%">
+                                @using (Html.BeginForm("AddImage", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "was-validated" }))
+                                {
+                                    @Html.ValidationSummary()
+
+                                    <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+                                        <tr>
+                                            <td width="40%">Выбирите название альбома: </td>
+                                            <td width="60%">
+                                                @if (!@Model.GalleryGroups.Any())
+                                                {
+                                                    <p>Нужно создать хотябы один альбом, перед добавлением изображения.</p>
+                                                    @Html.ActionLink("Создать альбом", "AddImageGroup", new { @class = "btn-success" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.DropDownListFor(x => x.SelectetGalleryGroup, @Model.GetSelectList())
+                                                }
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="40%">Укажите файл с фотографией: </td>
+                                            <td width="60%">
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="uploadImageFile" name="uploadImageFile">
+                                                        <label class="custom-file-label" for="uploadImageFile">Выбирите файл..</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="40%">Укажите заголовок фотографии: </td>
+                                            <td width="60%">@Html.TextBoxFor(x => x.GalleryData.Title, new { @class = "form-control" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="40%">Добавьте описание к фотографии: </td>
+                                            <td width="60%">@Html.TextBoxFor(x => x.GalleryData.Description, new { @class = "form-control" })</td>
+                                        </tr>
+                                    </table>
+                                    <br /><br />
+                                    <div class="float-right">
+                                        <button class="btn btn-primary" type="submit">Загрузить изображение</button>
+                                    </div>
+                                    <br />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    @Html.Partial("Footer")
+</body>
+</html>
+

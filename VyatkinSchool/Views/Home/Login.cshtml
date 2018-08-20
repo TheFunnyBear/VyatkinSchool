@@ -1,0 +1,53 @@
+﻿@model VyatkinSchool.Models.LoginPage
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Школа борьбы: Рассписание занятий</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+
+<body>
+    @Html.Partial("NavBarView")
+
+    <div id="page">
+        <div class="container">
+            <div class="title">
+                <h2>Доступ к публикациям</h2>
+                <p>Введите пароль для публикации новостей и фото.</p>
+
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "was-validated" }))
+                {
+                    @Html.ValidationSummary()
+
+                    <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td width="40%">Укажите название нового альбома: </td>
+                            <td width="60%">@Html.PasswordFor(x => x.Password, new { @class = "form-control" })</td>
+                        </tr>
+                    </table>
+
+                    <br /><br />
+                        <div class="float-right">
+                            <button class="btn btn-primary" type="submit">Войти</button>
+                        </div>
+                    <br />
+                }
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("Footer")
+</body>
+</html>

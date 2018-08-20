@@ -1,0 +1,63 @@
+﻿@model VyatkinSchool.Models.GalleryGroup
+
+@{
+    ViewBag.Title = "AddImageGroup";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Школа борьбы: Создать альбом изображений</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    @using System.Web.Optimization
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+
+<body>
+    @Html.Partial("NavBarView")
+
+
+    <div id="page">
+        <div class="container">
+            <div class="title">
+                <h2>Создать альбом</h2>
+                <p>Ввидите имя нового альбома.</p>
+                <div class="box">
+                    <div class="form-group" width="100%">
+                        @using (Html.BeginForm("AddImageGroup", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "was-validated" }))
+                        {
+                            @Html.ValidationSummary()
+
+                            <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+                                <tr>
+                                    <td width="40%">Укажите название нового альбома: </td>
+                                    <td width="60%">@Html.TextBoxFor(x => x.GroupName, new { @class = "form-control" })</td>
+                                </tr>
+                            </table>
+                            
+                            <br /><br />
+                            <div class="float-right">
+                                <button class="btn btn-primary" type="submit">Создать альбом</button>
+                            </div>
+                            <br />
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Html.Partial("Footer")
+</body>
+</html>
+

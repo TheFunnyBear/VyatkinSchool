@@ -1,0 +1,46 @@
+﻿@model VyatkinSchool.Models.Message
+
+@{
+    ViewBag.Title = "MessageCreated";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Школа борьбы: @Model.Title</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    @using System.Web.Optimization
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+
+<body>
+    @Html.Partial("NavBarView")
+
+    <div id="page">
+        <div class="container">
+            <div class="title">
+                <h2>@Model.Title</h2>
+                <p>Сообщение добавленно успешно.</p>
+                <div class="box">
+                    <p>@Html.Raw(Model.MessageText)<p>
+                        @if (Model.ImageId != null)
+                        {
+                        <p><img src='@Url.Action("show", "Image", new { id = Model.ImageId})' /></p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @Html.Partial("Footer")
+    </body>
+</html>

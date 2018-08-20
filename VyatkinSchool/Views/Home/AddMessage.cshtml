@@ -1,0 +1,83 @@
+﻿@model VyatkinSchool.Models.Message
+
+@{
+    ViewBag.Title = "AddMessage";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Школа борьбы: Создать сообщение</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    @using System.Web.Optimization
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+
+</head>
+
+<body>
+    @Html.Partial("NavBarView")
+
+
+    <div id="page">
+        <div class="container">
+            <div class="title">
+                <h2>Создать сообщение</h2>36
+                <p>Заполните поля чтобы создать новое сообщение.</p>
+                <div class="box">
+                    <div class="form-group" width="100%">
+                        @using (Html.BeginForm("AddMessage", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "was-validated" }))
+                        {
+                            @Html.ValidationSummary()
+
+                            <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+                                <tr>
+                                    <td width="40%">@Html.LabelFor(x => x.Title)</td>
+                                    <td width="60%">@Html.TextBoxFor(x => x.Title, new { @class = "form-control" })</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        @Html.LabelFor(m => m.MessageText)
+                                        @Html.TextAreaFor(m => m.MessageText, new { @style = "width: 300" })
+                                        @Html.ValidationMessageFor(m => m.MessageText, "", new { @class = "error" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td  width="40%">@Html.LabelFor(x => x.ImageId)</td>
+                                    <td  width="60%">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="uploadImageFile" name="uploadImageFile">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br /><br />
+                            <div class="float-right">
+                                <button class="btn btn-primary" type="submit">Создать сообщение</button>
+                            </div>
+                            <br />
+                            <span>@Html.Raw(Model.MessageText)</span>
+                         }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("Footer")
+
+    <script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({ selector: 'textarea', width: 660 });
+    </script>
+</body>
+</html>

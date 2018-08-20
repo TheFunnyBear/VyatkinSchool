@@ -1,0 +1,15 @@
+﻿<div id="header" class="container">
+    <div id="logo">
+        <h1 class="header_title"><a href="#">@Resources.NavBar.PageHeaderFirst</a></h1>
+        <h1 class="header_title"><a href="#">@Resources.NavBar.PageHeaderSecond</a></h1>
+    </div>
+    <div id="menu">
+        <ul>
+            @Html.MenuItem(@Resources.NavBar.NewsButton, "Index", "Home")
+            @Html.MenuItem(@Resources.NavBar.GalleryButton, "Gallery", "Home")
+            @Html.MenuItem(@Resources.NavBar.TimeTableButton, "TimeTable", "Home")
+            @Html.MenuItem(@Resources.NavBar.ContactsButton, "Contacts", "Home")
+            @Html.MenuItem(@Resources.NavBar.Login, "Login", "Home")
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿@model VyatkinSchool.Models.GalleryPage
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Школа борьбы: Галлерея</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+
+<body>
+    @Html.Partial("NavBarView")
+
+    @Html.Partial("GalleryBox", @Model)
+
+    @Html.Partial("Footer")
+</body>
+</html>
