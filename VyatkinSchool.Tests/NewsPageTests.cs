@@ -71,7 +71,27 @@ namespace VyatkinSchool.Tests
         {
             OpenBrowserSteps.OpenBrowser();
             OpenBrowserSteps.Navigate(TestsConstants.WebSiteHttpAddress);
-            OpenBrowserSteps.TitleDisplayed(TestsConstants.WebSiteTitle);
+            OpenBrowserSteps.CheckThatMainPageOpnned();
+            LoginPageSteps.Login();
+            NewsPageSteps.ClickOnAddNewMessageButton();
+
+            var messageGuid = Guid.NewGuid().ToString();
+            var title = $"Это тестовое сообщение c картинкой {messageGuid}";
+            var message = $"Это текст тестового сообщения c картинкой, This is text for test message with picture {messageGuid}";
+            NewsPageSteps.AddTitle(title);
+            NewsPageSteps.AddMessageText(message);
+            NewsPageSteps.AddPicture();
+            NewsPageSteps.ClickOnCreateMessageButon();
+
+            MessageCreatedSteps.CheckThatNewMessageCreatedPageOpened();
+            MessageCreatedSteps.CheckThatTitleShownForNewMessage(title);
+            MessageCreatedSteps.CheckThatTextShownForNewMessage(message);
+            const string pageTitle = "Школа борьбы: Добавление сообщения";
+            OpenBrowserSteps.TitleDisplayed(pageTitle);
+
+            MessageCreatedSteps.ClickOnShowAllMessagesList();
+            OpenBrowserSteps.CheckThatMainPageOpnned();
+            NewsPageSteps.CheckThatMainPageContainsMessageWithPicture(title);
         }
 
         [TestMethod]
@@ -98,6 +118,7 @@ namespace VyatkinSchool.Tests
 
             MessageCreatedSteps.ClickOnShowAllMessagesList();
             OpenBrowserSteps.CheckThatMainPageOpnned();
+            NewsPageSteps.CheckThatMainPageContainsMessage(title);
         }
     }
 }

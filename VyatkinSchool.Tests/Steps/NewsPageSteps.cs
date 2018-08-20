@@ -1,6 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using System.IO;
+using System.Linq;
 using TechTalk.SpecFlow;
+using Resources;
+using System.Drawing;
 
 namespace VyatkinSchool.Tests.Steps
 {
@@ -60,6 +64,70 @@ namespace VyatkinSchool.Tests.Steps
         {
             const string creatMessageText = "Создать сообщение";
             _buttonCliker.ClickOnButtonWithText(creatMessageText);
+        }
+
+        [Then(@"Check that main page with news contains (.*) message")]
+        public void CheckThatMainPageContainsMessage(string title)
+        {
+            var boxElements = _browser.GetDriver().FindElements(By.ClassName("box"));
+            var isMessageWithTitleExist = boxElements.Any(element => {
+                var boxElementsWithDetails = element.FindElements(By.ClassName("details"));
+                if (boxElementsWithDetails != null)
+                {
+                    return boxElementsWithDetails.Any(detailsElement =>
+                    {
+                        var paragraphTags = detailsElement.FindElements(By.TagName("p"));
+                        if (paragraphTags != null)
+                        {
+                            return paragraphTags.Any(paragraphTag => paragraphTag.Text.Equals(title));
+                        }
+
+                        return false;
+                    });
+                }
+
+                return false;
+
+            });
+
+            Assert.IsTrue(isMessageWithTitleExist, $"Can't find [{title}] in main page.");
+        }
+
+        [Then(@"Add picture to new message")]
+        public void AddPicture()
+        {
+            var converter = new ImageConverter();
+            var pictureBytes = (byte[])converter.ConvertTo(Resources.VyatkinSchool.TestPicture, typeof(byte[]));
+
+            var saveTempPictureTo = Path.Combine(Path.GetTempPath(), $"{Path.GetFileNameWithoutExtension(Path.GetTempFileName())}.jpg");
+            File.WriteAllBytes(saveTempPictureTo, pictureBytes);
+
+            var element = _browser.GetDriver().FindElement(By.Id("uploadImageFile"));
+            element.SendKeys(saveTempPictureTo);
+        }
+
+        public void CheckThatMainPageContainsMessageWithPicture(string title)
+        {
+            var boxElements = _browser.GetDriver().FindElements(By.ClassName("box"));
+            var isPictureExist = false;
+
+            var boxElementsWithDetails = boxElements.Where(element => element.FindElements(By.ClassName("details")).Any());
+            var boxElementWithExpectedTitle = boxElementsWithDetails.SingleOrDefault(detailsElement =>
+            {
+                var paragraphTags = detailsElement.FindElements(By.TagName("p"));
+                if (paragraphTags != null)
+                {
+                    return paragraphTags.Any(paragraphTag => paragraphTag.Text.Equals(title));
+                }
+
+                return false;
+            });
+
+            Assert.IsNotNull(boxElementWithExpectedTitle, $"Can't find [{title}] in main page.");
+
+
+            var imagElement = boxElementWithExpectedTitle.FindElements(By.TagName("img")).SingleOrDefault();
+            Assert.IsNotNull(imagElement, $"Can't find picture in message with title[{title}] in main page.");
         }
     }
 }

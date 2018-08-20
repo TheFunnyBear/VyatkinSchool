@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium.Firefox;
-
-namespace VyatkinSchool.Tests.Steps
+﻿namespace VyatkinSchool.Tests.Steps
 {
     public interface INewsPageSteps
     {
@@ -9,5 +7,8 @@ namespace VyatkinSchool.Tests.Steps
         void AddTitle(string title);
         void AddMessageText(string message);
         void ClickOnCreateMessageButon();
+        void CheckThatMainPageContainsMessage(string title);
+        void AddPicture();
+        void CheckThatMainPageContainsMessageWithPicture(string title);
     }
 }

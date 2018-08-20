@@ -115,6 +115,11 @@
     <Compile Include="Constants\TestsConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTestBase.cs" />
+    <Compile Include="VyatkinSchool.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VyatkinSchool.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -125,6 +130,16 @@
       <Project>{DDD60A23-DCAF-4711-817D-752807ACAD55}</Project>
       <Name>VyatkinSchool</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VyatkinSchool.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VyatkinSchool.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\f11e63b9-1fe7-4117-8dcd-b84f6d21c2d9.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
