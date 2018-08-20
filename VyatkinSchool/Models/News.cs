@@ -100,12 +100,13 @@ namespace VyatkinSchool.Models
         private Message GetMeesageOnCurrentPageWithIndex(int index)
         {
             var messages = OnePageOfMessages;
-            if (IsItemWithIndexExist(index: index))
+            if (!IsItemWithIndexExist(index: index))
             {
-                return messages[index];
+                throw new ArgumentOutOfRangeException($"Can't get element with index [{index}]");
             }
 
-            throw new Exception($"Can't get element with index [{index}]");
+            return messages[index];
+            
         }
     }
 }
