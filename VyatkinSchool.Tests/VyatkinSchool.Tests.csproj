@@ -61,6 +61,7 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -93,21 +94,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HomeControllerModuleTest.cs" />
+    <Compile Include="NaviBarTests.cs" />
     <Compile Include="Steps\BrowserNavigator.cs" />
     <Compile Include="Steps\ButtonCliker.cs" />
+    <Compile Include="Steps\HeaderButtonChecker.cs" />
     <Compile Include="Steps\HeaderChecker.cs" />
     <Compile Include="Steps\IBrowserNavigator.cs" />
     <Compile Include="Steps\IButtonCliker.cs" />
+    <Compile Include="Steps\IHeaderButtonChecker.cs" />
     <Compile Include="Steps\IHeaderChecker.cs" />
     <Compile Include="Steps\ILinkCliker.cs" />
     <Compile Include="Steps\ILoginPageSteps.cs" />
     <Compile Include="Steps\IMessageCreatedSteps.cs" />
+    <Compile Include="Steps\INavigationBarSteps.cs" />
     <Compile Include="Steps\INewsPageSteps.cs" />
     <Compile Include="Steps\IOpenBrowserSteps.cs" />
     <Compile Include="Constants\ITestsConstants.cs" />
     <Compile Include="Steps\LinkCliker.cs" />
     <Compile Include="Steps\LoginPageSteps.cs" />
     <Compile Include="Steps\MessageCreatedSteps.cs" />
+    <Compile Include="Steps\NavigationBarSteps.cs" />
     <Compile Include="Steps\NewsPageSteps.cs" />
     <Compile Include="NewsPageTests.cs" />
     <Compile Include="Steps\OpenBrowserSteps.cs" />
@@ -122,7 +129,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

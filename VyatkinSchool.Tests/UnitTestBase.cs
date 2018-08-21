@@ -19,12 +19,14 @@ namespace VyatkinSchool.Tests
             Container.Resolve<BrowserNavigator>();
             Container.Resolve<ButtonCliker>();
             Container.Resolve<LinkCliker>();
+            Container.Resolve<HeaderButtonChecker>();
             Container.Resolve<HeaderChecker>();
             Container.Resolve<TestsConstants>();
             Container.Resolve<OpenBrowserSteps>();
             Container.Resolve<NewsPageSteps>();
             Container.Resolve<LoginPageSteps>();
             Container.Resolve<MessageCreatedSteps>();
+            Container.Resolve<NavigationBarSteps>();
         }
 
         public virtual void TestCleanup()
@@ -39,12 +41,14 @@ namespace VyatkinSchool.Tests
             Container.RegisterType<IBrowserNavigator, BrowserNavigator>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IButtonCliker, ButtonCliker>(new ContainerControlledLifetimeManager());
             Container.RegisterType<ILinkCliker, LinkCliker>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IHeaderButtonChecker, HeaderButtonChecker>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IHeaderChecker, HeaderChecker>(new ContainerControlledLifetimeManager());
             Container.RegisterType<ITestsConstants, TestsConstants>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IOpenBrowserSteps, OpenBrowserSteps>(new ContainerControlledLifetimeManager());
             Container.RegisterType<INewsPageSteps, NewsPageSteps>(new ContainerControlledLifetimeManager());
             Container.RegisterType<ILoginPageSteps, LoginPageSteps>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IMessageCreatedSteps, MessageCreatedSteps>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<INavigationBarSteps, NavigationBarSteps>(new ContainerControlledLifetimeManager());
         }
     }
 }

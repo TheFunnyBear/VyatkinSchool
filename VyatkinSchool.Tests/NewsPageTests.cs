@@ -7,7 +7,6 @@ using System;
 
 namespace VyatkinSchool.Tests
 {
-
     [TestClass]
     public sealed class NewsPageTests : UnitTestBase
     {

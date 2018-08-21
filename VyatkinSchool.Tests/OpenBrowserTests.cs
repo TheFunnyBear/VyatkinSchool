@@ -6,7 +6,6 @@ using VyatkinSchool.Tests.Constants;
 
 namespace VyatkinSchool.Tests
 {
-
     [TestClass]
     public sealed class OpenBrowserTests : UnitTestBase
     {
