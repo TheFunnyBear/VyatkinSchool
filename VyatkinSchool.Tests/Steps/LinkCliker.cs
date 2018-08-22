@@ -18,14 +18,37 @@ namespace VyatkinSchool.Tests.Steps
 
         public void ClickOnLinkWithText(string linkText)
         {
-            IList<IWebElement> links = _browser.GetDriver().FindElements(By.TagName("a"));
-            var creatMessageLink = links.SingleOrDefault(element => element.Text.Equals(linkText, StringComparison.OrdinalIgnoreCase));
-            if (creatMessageLink == null)
-            {
-                var existedLinks = string.Join(", ", links.Select(link => $"[Tag: {link.TagName}, Text: {link.Text}]"));
-                Assert.Fail($"Can't find [{linkText}] link in page. Existed links is: [{existedLinks}]");
-            }
-            creatMessageLink.Click();
+            var linkWithText = FindIsLinkWithText(linkText);
+            Assert.IsNotNull(linkWithText,  $"Can't find [{linkText}] link in page. Existed links is: [{GetExistedLinks()}]");
+            
+            linkWithText.Click();
         }
+
+        public void CheckThatLinkWithTextExist(string linkText)
+        {
+            var linkWithText = FindIsLinkWithText(linkText);
+            Assert.IsNotNull(linkWithText, $"Can't find [{linkText}] link in page. Existed links is: [{GetExistedLinks()}]");
+        }
+
+        public void CheckThatLinkWithTextNotExist(string linkText)
+        {
+            var linkWithText = FindIsLinkWithText(linkText);
+            Assert.IsNull(linkWithText, $"Found [{linkText}] link in page. But should not.");
+        }
+
+        private IWebElement FindIsLinkWithText(string linkText)
+        {
+            IList<IWebElement> links = _browser.GetDriver().FindElements(By.TagName("a"));
+            return links.SingleOrDefault(element => element.Text.Equals(linkText, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private string GetExistedLinks()
+        {
+            var existedLinks = _browser.GetDriver().FindElements(By.TagName("a"));
+            return string.Join(", ", existedLinks.Select(link => $"[Tag: {link.TagName}, Text: {link.Text}]"));
+        }
+
+        
+
     }
 }

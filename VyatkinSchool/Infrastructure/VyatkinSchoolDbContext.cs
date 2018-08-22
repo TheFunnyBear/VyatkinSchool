@@ -1,15 +1,15 @@
-﻿namespace VyatkinSchool.Models
-{
-    using Microsoft.EntityFrameworkCore;
-    using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using VyatkinSchool.Models;
 
-    public partial class GalleryManagerEntities : DbContext
+namespace VyatkinSchool.Infrastructure
+{
+    public partial class VyatkinSchoolDbContext : DbContext
     {
-        public GalleryManagerEntities()
+        public VyatkinSchoolDbContext()
         {
         }
 
-        public GalleryManagerEntities(DbContextOptions<GalleryManagerEntities> options)
+        public VyatkinSchoolDbContext(DbContextOptions<VyatkinSchoolDbContext> options)
             : base(options)
         {
         }

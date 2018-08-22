@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using VyatkinSchool.Infrastructure;
 
 namespace VyatkinSchool.Models
 {
@@ -65,7 +66,7 @@ namespace VyatkinSchool.Models
             GalleryItems = new List<GalleryData>();
             GalleryGroup = new List<GalleryGroup>();
 
-            using (var dataBase = new GalleryManagerEntities())
+            using (var dataBase = new VyatkinSchoolDbContext())
             {
                 GalleryGroup.AddRange(dataBase.GalleryGroup);
                 GalleryItems.AddRange(dataBase.Gallery);

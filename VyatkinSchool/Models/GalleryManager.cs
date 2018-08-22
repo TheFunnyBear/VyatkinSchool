@@ -1,11 +1,10 @@
-﻿using System;
+﻿using VyatkinSchool.Infrastructure;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace VyatkinSchool.Models
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-
     public class GalleryManager
     {
         public List<GalleryGroup> GalleryGroups { get; set; }
@@ -17,7 +16,7 @@ namespace VyatkinSchool.Models
             GalleryGroups = new List<GalleryGroup>();
             GalleryData = new GalleryData();
             SelectetGalleryGroup = -1;
-            using (var dataBase = new GalleryManagerEntities())
+            using (var dataBase = new VyatkinSchoolDbContext())
             {
                 GalleryGroups.AddRange(dataBase.GalleryGroup.ToList());
             }

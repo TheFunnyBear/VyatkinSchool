@@ -11,6 +11,7 @@ using System.Text;
 
 namespace VyatkinSchool.Models
 {
+
     public class Contacts
     {
         public Contacts()

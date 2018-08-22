@@ -1,8 +1,7 @@
 ﻿using System.Web.Mvc;
-using VyatkinSchool.Models;
 using System.Linq;
 using System.IO;
-using System.Drawing;
+using VyatkinSchool.Infrastructure;
 
 namespace VyatkinSchool.Controllers
 {
@@ -10,7 +9,7 @@ namespace VyatkinSchool.Controllers
     {
         public ActionResult Show(int id)
         {
-            using (var dataBase = new GalleryManagerEntities())
+            using (var dataBase = new VyatkinSchoolDbContext())
             {
                 var galleryItem = dataBase.Gallery.SingleOrDefault(item => item.ID == id);
                 var fileName = $"{Path.GetFileNameWithoutExtension(Path.GetRandomFileName())}.jpg";

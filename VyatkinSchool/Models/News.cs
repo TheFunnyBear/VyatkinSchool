@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using VyatkinSchool.Infrastructure;
 
 namespace VyatkinSchool.Models
 {
@@ -86,7 +86,7 @@ namespace VyatkinSchool.Models
 
         private void InitData()
         {
-            using (var dataBase = new GalleryManagerEntities())
+            using (var dataBase = new VyatkinSchoolDbContext())
             {
                 SchoolNews.AddRange(dataBase.Messages.OrderByDescending(message => message.Date));
             }

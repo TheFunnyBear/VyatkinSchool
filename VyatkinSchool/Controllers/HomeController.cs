@@ -1,11 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Web.Mvc;
-using System.Drawing;
 using VyatkinSchool.Models;
 using System.Web;
 using System.Linq;
 using PagedList;
+using VyatkinSchool.Infrastructure;
 
 namespace VyatkinSchool.Controllers
 {
@@ -62,7 +61,7 @@ namespace VyatkinSchool.Controllers
 
             if (ModelState.IsValid)
             {
-                using (var dataBase = new GalleryManagerEntities())
+                using (var dataBase = new VyatkinSchoolDbContext())
                 {
                     if (uploadImageFile != null)
                     {
@@ -115,7 +114,7 @@ namespace VyatkinSchool.Controllers
 
             if (ModelState.IsValid)
             {
-                using (var dataBase = new GalleryManagerEntities())
+                using (var dataBase = new VyatkinSchoolDbContext())
                 {
                     if (dataBase.GalleryGroup.Any(group => group.GroupName.Equals(model.GroupName, StringComparison.OrdinalIgnoreCase)))
                     {
@@ -159,7 +158,7 @@ namespace VyatkinSchool.Controllers
             var messageData = new Message();
             if (ModelState.IsValid)
             {
-                using (var dataBase = new GalleryManagerEntities())
+                using (var dataBase = new VyatkinSchoolDbContext())
                 {
                     messageData.Date = DateTime.Now;
                     messageData.Title = model.Title;
@@ -231,7 +230,7 @@ namespace VyatkinSchool.Controllers
         {
             if (id != null)
             {
-                using (var dataBase = new GalleryManagerEntities())
+                using (var dataBase = new VyatkinSchoolDbContext())
                 {
                     var requerdMessage = dataBase.Messages.SingleOrDefault(message => message.Id == id);
                     if (requerdMessage != null)

@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Unity;
-using Unity.Attributes;
+using Microsoft.Practices.Unity;
 using VyatkinSchool.Tests.Steps;
 using VyatkinSchool.Tests.Constants;
 using System;
@@ -28,6 +27,7 @@ namespace VyatkinSchool.Tests
         [TestInitialize]
         public override void TestInitialize()
         {
+            base.TestInitialize();
             TestsConstants = Container.Resolve<ITestsConstants>();
             OpenBrowserSteps = Container.Resolve<IOpenBrowserSteps>();
             NewsPageSteps = Container.Resolve<INewsPageSteps>();
