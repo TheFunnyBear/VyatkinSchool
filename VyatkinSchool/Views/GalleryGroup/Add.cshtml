@@ -1,0 +1,41 @@
+﻿@model VyatkinSchool.Models.GalleryGroupItem
+@{
+    ViewBag.Title = "Создать альбом для изображений";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        @using (Html.BeginForm("Add", "GalleryGroup", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal was-validated", role = "form" }))
+        {
+            <h4>Заполните поля чтобы создать новый альбом для изображений.</h4>
+            <hr />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <table border="0" align="center" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td width="40%">@Html.LabelFor(x => x.GroupName)</td>
+                    <td width="60%">@Html.TextBoxFor(x => x.GroupName, new { @class = "form-control" })</td>
+                </tr>
+                <tr align="right">
+                    <td></td>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" class="btn btn-primary" value="Создать альбом" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

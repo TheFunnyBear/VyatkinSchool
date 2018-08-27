@@ -1,0 +1,80 @@
+﻿@using PagedList.Mvc;
+
+#line default
+#line hidden
+
+#line 2 "c:\WORK\VyatkinSchool\VyatkinSchool\Views\Gallery\Show.cshtml"
+using PagedList;
+
+#line default
+#line hidden
+
+#line 3 "c:\WORK\VyatkinSchool\VyatkinSchool\Views\Gallery\Show.cshtml"
+using VyatkinSchool.Models;
+@model VyatkinSchool.Models.GalleryItem
+@{
+    ViewBag.Title = "Просмотр изображения";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <hr />
+        <a href="@Url.Action("Show", "Gallery")" class="btn btn-primary">
+            Перейти к галлереи
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        </a>
+
+        <a href="@Url.Action("List", "Gallery")" class="btn btn-primary">
+            Перейти к списку изображений
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        </a>
+
+        <table border="0" align="center" cellpadding="5" cellspacing="0">
+            <tr>
+                <td width="40%">Название альбома: </td>
+                <td width="60%">
+                    @if (ViewBag.GalleryGroups != null)
+            {
+            @((ViewBag.GalleryGroups as List<GalleryGroupItem>).SingleOrDefault(galleryGroup => galleryGroup.Id == Model.GalleryId)?.GroupName)
+            }
+                </td>
+            </tr>
+            <tr>
+                <td width="40%">Заголовок:</td>
+                <td width="60%">@Model.Title</td>
+            </tr>
+            <tr>
+                <td width="40%">Описание:</td>
+                <td width="60%">@Model.Description</td>
+            </tr>
+        </table>
+
+        <table border="0" align="center" cellpadding="5" cellspacing="0">
+            <tr>
+                <td align="left">
+                    <p><img src='@Url.Action("show", "Image", new { id = Model.ImageId })' /></p>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+
+
+
+
+

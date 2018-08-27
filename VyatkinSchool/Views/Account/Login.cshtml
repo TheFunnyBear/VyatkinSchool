@@ -1,0 +1,61 @@
+﻿@using VyatkinSchool.Models.AcountViewModels
+@model LoginViewModel
+@{
+    ViewBag.Title = "Выполнить вход";
+}
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <h4>Используйте локальную учетную запись для входа.</h4>
+        <hr />
+
+        <section id="loginForm">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="box">
+                <table border="0" align="center" cellpadding="15" cellspacing="0" width="1000">
+                    <tr>
+                        <td align="right" width="50%">@Html.LabelFor(m => m.Email, new { @class = "control-label" })</td>
+                        <td align="left" width="50%">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" width="50%">@Html.LabelFor(m => m.Password, new { @class = "control-label" })</td>
+                        <td align="left" width="50%">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" width="50%"></td>
+                        <td align="left" width="50%">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </td>
+                    </tr>
+
+                    <tr class="form-group">
+                        <td colspan="2" align="right">
+                        <!--
+                        <a href="@Url.Action("Register")" class="btn btn-default">Регистрация нового пользователя</a>
+                        -->
+                        <input type="submit" value="Выполнить вход" class="btn btn-default" /></td>
+                    </tr>
+                </table>
+            </div>
+        }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

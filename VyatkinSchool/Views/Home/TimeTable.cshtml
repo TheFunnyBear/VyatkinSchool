@@ -1,28 +1,71 @@
-﻿@model VyatkinSchool.Models.Contacts
-
-@{
-    Layout = null;
+﻿@{
+    ViewBag.Title = "Расписание";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Школа борьбы: Рассписание занятий</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Styles.Render("~/Content/css")
-</head>
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title</h2>
+        </div>
 
-<body>
-    @Html.Partial("NavBarView")
+        <div class="box">
+            <table border="0" align="center" cellpadding="5" cellspacing="0" width="1000">
+                <tr>
+                    <td>
+                        <p>Расписание занятий.</p>
+                    </td>
+                </tr>
+            </table>
+            <table border="1" align="center" cellpadding="5" cellspacing="0" width="1000">
+                <tr>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)" width="200px">Время/День</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Понедельник</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Вторник</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Среда</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Четверг</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Пятница</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Суббота</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Воскресенье</th>
+                </tr>
+                <tr>
+                    <td align="center">9-00 - 11-00</td>
+                    <td align="center">-</td>
+                    <td align="center">-</td>
+                    <td align="center">-</td>
+                    <td align="center">-</td>
+                    <td align="center">-</td>
+                    <td align="center">День борьбы</td>
+                    <td align="center">-</td>
+                </tr>
+                <tr>
+                    <td align="center">16-00 - 17-00</td>
+                    <td align="center">Младшая группа</td>
+                    <td align="center">-</td>
+                    <td align="center">Младшая группа</td>
+                    <td align="center">-</td>
+                    <td align="center">Младшая группа</td>
+                    <td align="center">-</td>
+                    <td align="center">-</td>
+                </tr>
+                <tr>
+                    <td align="center">17-30 - 19-00</td>
+                    <td align="center">Старшая группа</td>
+                    <td align="center">Старшая группа</td>
+                    <td align="center">Старшая группа</td>
+                    <td align="center">Старшая группа</td>
+                    <td align="center">Старшая группа</td>
+                    <td align="center">-</td>
+                    <td align="center">-</td>
+                </tr>
+            </table>
+            <table border="0" align="center" cellpadding="5" cellspacing="0" width="1000">
+                <tr>
+                    <td align="right">
+                        <p><small> Расписание составленно: 01.09.2018</small></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
 
-    @Html.Partial("TimeTableBox", @Model)
-
-    @Html.Partial("Footer")
-</body>
-</html>

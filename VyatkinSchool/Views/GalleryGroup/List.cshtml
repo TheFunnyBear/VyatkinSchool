@@ -1,0 +1,66 @@
+﻿@using VyatkinSchool.Models;
+@{
+    ViewBag.Title = "Список альбомов для изображений";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <hr />
+
+        <a href="@Url.Action("Add", "GalleryGroup")" class="btn btn-primary">
+            Cоздать альбом
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a>
+        <a href="@Url.Action("Add", "Gallery")" class="btn btn-primary">
+            Добавить новое изображение в альбом
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a>
+        <a href="@Url.Action("List", "Gallery")" class="btn btn-primary">
+            Перейти к галлереи
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        </a>
+
+        <hr />
+
+        <div class="box">
+            @if (ViewBag.ExistedGalleryGroups != null && ViewBag.ExistedGalleryGroups.Any())
+            {
+                <table border="0" align="center" cellpadding="5" cellspacing="0">
+                    <tr>
+                        <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Список созданных <strong>альбомов</strong>:</th>
+                    </tr>
+                    @foreach (GalleryGroupItem group in ViewBag.ExistedGalleryGroups)
+                    {
+                        <tr>
+                            <td align="left">
+                                @if (Model.Id == @group.Id)
+                                {
+                                    <strong>@group.GroupName</strong>
+                                }
+                                else
+                                {
+                                    @group.GroupName
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+

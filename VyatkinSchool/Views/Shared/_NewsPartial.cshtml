@@ -1,0 +1,11 @@
+﻿@using VyatkinSchool.Helpers
+
+@if (Request.IsAuthenticated)
+{
+    @Html.MenuItem("Новости", "SixNews", "News")
+    @Html.MenuItem("Список новостей", "List", "Message")
+}
+else
+{
+    @Html.MenuItem("Новости", "SixNews", "News")
+}

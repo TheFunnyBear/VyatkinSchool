@@ -1,0 +1,54 @@
+﻿@using VyatkinSchool.Helpers
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – Школа борьбы Олега Вяткина</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a href="@Url.Action("Index", "Home")">
+                    <img width="120" src='~/Content/Logo/logo.png' />
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @Html.Partial("_NewsPartial")
+                    @Html.Partial("_GalleryPartial")
+                    @Html.MenuItem("Рассписание", "TimeTable", "Home")
+                    @Html.MenuItem("Контакты", "Contacts", "Home")
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div id="copyright" class="container">
+                <p>&copy; Школа борьбы Олега Вяткина. Все права защищены.</p>
+                <p>Разработал: <a href="http://kosolapov.info" rel="nofollow">Денис Косолапов</a> | Дизайн: <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

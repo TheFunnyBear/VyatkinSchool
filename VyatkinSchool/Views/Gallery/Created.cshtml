@@ -1,0 +1,55 @@
+﻿@model VyatkinSchool.Models.GalleryItem
+@{
+    ViewBag.Title = "Изображение успешно добавленно";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <hr />
+        <a href="@Url.Action("Add", "Gallery")" class="btn btn-primary">
+            Добавить ещё одно изображение
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a>
+
+        <a href="@Url.Action("Show", "Gallery")" class="btn btn-primary">
+            Перейти к галлереи
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        </a>
+
+        <a href="@Url.Action("List", "Gallery")" class="btn btn-primary">
+            Перейти к списку изображений
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        </a>
+        <hr />
+
+        <p>Изображение добавленно в альбом <strong>[@ViewBag.GroupName]</strong> успешно.</p>
+
+        <table border="0" align="center" cellpadding="5" cellspacing="0">
+            <tr>
+                <td><strong>@Html.DisplayTextFor(x => x.Title)</strong></td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayTextFor(x => x.Description)</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="box">
+                        <p><img width="600" src='@Url.Action("show", "Image", new { id = Model.ImageId })' /></p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

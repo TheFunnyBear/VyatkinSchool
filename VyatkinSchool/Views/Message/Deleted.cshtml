@@ -1,0 +1,32 @@
+﻿@model VyatkinSchool.Models.MessageItem
+@{
+    ViewBag.Title = "Сообщение успешно удалено";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+        
+        <hr />
+
+        <a href="@Url.Action("List", "Message")" class="btn btn-primary">
+            Перейти к списку сообщений
+            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+        </a>
+
+        <hr />
+
+        <p>
+            <strong>Сообщение @Model.Date @Model.Title было удалено. Его востановление не возможно.</strong>
+        </p>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

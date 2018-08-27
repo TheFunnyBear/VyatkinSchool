@@ -1,0 +1,83 @@
+﻿@model VyatkinSchool.Models.MessageItem
+@{
+    ViewBag.Title = "Обновить содержимое сообщения";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        @using (Html.BeginForm("Edit", "Message", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal was-validated", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h4>Внесите изменения в поля чтобы обновить сообщение.</h4>
+            <hr />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <table border="0" align="center" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td width="40%">@Html.LabelFor(x => x.Title)</td>
+                    <td width="60%">@Html.TextBoxFor(x => x.Title, new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td width="40%">@Html.LabelFor(m => m.MessageText)</td>
+                    <td width="60%">
+                        @Html.TextAreaFor(m => m.MessageText, new { @style = "width: 300" })
+                        @Html.ValidationMessageFor(m => m.MessageText, "", new { @class = "error" })
+                    </td>
+                </tr>
+                @if (Model.ImageId != null)
+                {
+                    <tr>
+                        <td width="40%">К сообщению уже прикреплено изображение, его можно заменить</td>
+                        <td width="60%">
+                            <p><img width="300" src='@Url.Action("ShowImageForGalleryItem", "Image", new { id = Model.ImageId})' /></p>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td width="40%">@Html.LabelFor(x => x.ImageId)</td>
+                    <td width="60%">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="uploadImageFile" name="uploadImageFile">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr align="right">
+                    <td><</td>>
+                    <td>
+                        <button class="btn btn-warning" type="submit">
+                            Обновить
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </button>
+
+                        <a href="@Url.Action("List", "Message", new { @Model.Id })" class="btn btn-primary ">
+                            Отменить
+                            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+                        </a>
+                    <td>
+                </tr>
+
+            </table>
+
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({ selector: 'textarea', width: 660 });
+</script>
+
+

@@ -1,0 +1,103 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using VyatkinSchool.Models;
+
+@model IPagedList<GalleryItem>
+
+@{
+    ViewBag.Title = "Список изображений";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <hr />
+        <a href="@Url.Action("Add", "Gallery")" class="btn btn-primary">
+            Добавить изображение
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a>
+
+        <a href="@Url.Action("Add", "GalleryGroup")" class="btn btn-primary">
+            Создать альбом
+            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+        </a>
+        <hr />
+
+        <div class="box">
+
+            <table border="0" align="center" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td align="center">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("List", new { page }))
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0" align="center" cellpadding="5" cellspacing="0">
+                <tr>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Заголовок</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Описание</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Изображение</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Группа</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Действия</th>
+                </tr>
+
+                @foreach (GalleryItem currentGalleryItem in @Model)
+                {
+                    <tr>
+                        <td align="left">
+                            <p>@currentGalleryItem.Title</p>
+                        </td>
+                        <td align="left">
+                            <p>@currentGalleryItem.Description</p>
+                        </td>
+                        <td align="left">
+                            <a href="@Url.Action("ShowItem", "Gallery", new { currentGalleryItem.Id })">
+                                <p><img width="100" src='@Url.Action("show", "Image", new { id = currentGalleryItem.ImageId })' /></p>
+                            </a>
+                        </td>
+                        <td>
+                            @if (ViewBag.GalleryGroups != null)
+                            {
+                                <p>
+                                    @((ViewBag.GalleryGroups as List<GalleryGroupItem>).SingleOrDefault(galleryGroup => galleryGroup.Id == currentGalleryItem.GalleryId)?.GroupName)
+                                </p>
+                            }
+                        </td>
+                        <td align="center">
+                            <a href="@Url.Action("ShowItem", "Gallery", new { currentGalleryItem.Id })" class="btn btn-primary">
+                                Просмотреть
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                            </a>
+                            <a href="@Url.Action("Edit", "Gallery", new { currentGalleryItem.Id })" class="btn btn-primary">
+                                Редактировать
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </a>
+                            <a href="@Url.Action("Delete", "Gallery", new { currentGalleryItem.Id })" class="btn btn-danger">
+                                Удалить
+                                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <table border="0" align="center" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td align="center">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("List", new { page }))
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

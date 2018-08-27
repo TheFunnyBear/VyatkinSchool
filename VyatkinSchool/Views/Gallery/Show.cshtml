@@ -1,0 +1,84 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using VyatkinSchool.Models;
+
+@model IPagedList<GalleryGroupItem>
+
+@{
+    ViewBag.Title = "Галлерея";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <table border="0" align="center" cellpadding="2" cellspacing="0" class="box">
+            <tr>
+                <td align="center">
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Show", new { page }))
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center"  width ="1000">
+
+                    @foreach (var pictureGroup in @Model)
+                    {
+                        <p>Альбом: <strong>@pictureGroup.GroupName</strong></p>
+                        <div id="carouselId" class="carousel slide" data-ride="carousel" style="position:relative;z-index:1;">
+                            <ol class="carousel-indicators" style="z-index:1 !important">
+                            @for (int galleryItemIndex = 0; galleryItemIndex < (int)ViewBag.ItemsCount; galleryItemIndex++)
+                            {
+                                if (galleryItemIndex == 0)
+                                {
+                                    <li data-target="#carouselId" data-slide-to="@galleryItemIndex" class="active"></li>
+                                }
+                                else
+                                {
+                                    <li data-target="#carouselId" data-slide-to="@galleryItemIndex"></li>
+                                }
+                            }
+                            </ol>
+                            <div class="carousel-inner" role="listbox">
+                            @for (int galleryItemIndex = 0; galleryItemIndex < (int)ViewBag.ItemsCount; galleryItemIndex++)
+                            {
+                                var galleryItem = (ViewBag.GalleryItems as List<GalleryItem>).ElementAt(galleryItemIndex);
+                                var classItem = (galleryItemIndex == 0) ? "item active" : "item";
+                                <div class="@classItem">
+                                    <img src='@Url.Action("show", "Image", new { id = galleryItem.ImageId})' />
+                                    <div class="carousel-caption">
+                                        @if (!string.IsNullOrWhiteSpace(galleryItem.Title))
+                                        {
+                                            <h3>@galleryItem.Title.Trim(' ')</h3>
+                                        }
+                                        @if (!string.IsNullOrWhiteSpace(galleryItem.Description))
+                                        {
+                                            <p>@galleryItem.Description.Trim(' ')</p>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            </div>
+                        </div>
+                    }
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center">
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Show", new { page }))
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

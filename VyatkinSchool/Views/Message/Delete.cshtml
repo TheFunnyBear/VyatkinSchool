@@ -1,0 +1,57 @@
+﻿@model VyatkinSchool.Models.MessageItem
+@{
+    ViewBag.Title = "Удалить сообщение";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <h4>Подтвердите удаление сообщения.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+        @using (Html.BeginForm("Delete", "Message", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal was-validated", role = "form" }))
+        {
+            <table border="0" align="center" cellpadding="5" cellspacing="0">
+                <tr align="left">
+                    <td>
+                        <p><strong>@Model.Title</strong></p>
+
+                        <p>@Html.Raw(Model.MessageText)</p>
+
+                        @if (Model.ImageId != null)
+                {
+                            <p><img width="300" src='@Url.Action("ShowImageForGalleryItem", "Image", new { id = Model.ImageId })' /></p>
+                        }
+                    </td>
+                </tr>
+                <tr align="right">
+                    <td>
+                        <button class="btn btn-danger" type="submit">
+                            Удалить
+                            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                        </button>
+
+                        <a href="@Url.Action("List", "Message", new { @Model.Id })" class="btn btn-primary ">
+                            Отменить
+                            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+                        </a>
+                    <td>
+                </tr>
+            </table>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
