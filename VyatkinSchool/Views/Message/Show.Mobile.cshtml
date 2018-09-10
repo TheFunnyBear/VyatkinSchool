@@ -1,0 +1,37 @@
+﻿@model VyatkinSchool.Models.MessageItem
+@{
+    ViewBag.Title = @Model.Date + @Model.Title;
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h4><b>@Model.Date</b> @Model.Title.</h4>
+        </div>
+
+        <p>
+            @Html.Raw(Model.MessageText)
+        </p>
+
+
+        @if (Model.ImageId != null)
+        {
+            <a href="#popupForImage" data-rel="popup" data-position-to="window" data-transition="fade">
+                <img class="popphoto" src='@Url.Action("ShowImageForGalleryItem", "Image", new { id = Model.ImageId })' alt="@Model.Title" style="width:65%">
+            </a>
+
+            <div data-role="popup" id="popupForImage" data-overlay-theme="b" data-theme="b" data-corners="false">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">
+                    Закрыть
+                </a>
+                <img class="popphoto" src='@Url.Action("ShowImageForGalleryItem", "Image", new { id = Model.ImageId })' style="max-height:512px;" alt="@Model.Title">
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

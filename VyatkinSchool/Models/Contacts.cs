@@ -66,11 +66,11 @@ namespace VyatkinSchool.Models
         private void InitDefaultValue()
         {
             FirstName = "Олег";
-            LastName = "Олегович";
-            Patronymic = "Вяткин";
+            LastName = "Вяткин";
+            Patronymic = "Олегович";
             Phone = "+7(978)118-51-82";
-            Email = "oleg@vyatkin.info";
-            WebSite = new Uri("https://www.vyatkin.info");
+            Email = "oleg@sevwrestling.ru";
+            WebSite = new Uri("https://www.sevwrestling.ru");
             Location = "Россия, г. Севастополь";
         }
     }

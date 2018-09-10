@@ -24,6 +24,16 @@ namespace VyatkinSchool
                       "~/Content/fonts.css",
                       "~/Content/default.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Mobilejs").Include(
+                "~/Scripts/jquery.mobile-1.*",
+                "~/Scripts/jquery-1.*"));
+
+            bundles.Add(new StyleBundle("~/Content/Mobilecss").Include(
+                "~/Content/jquery.mobile.structure-1.4.5.min.css",
+                "~/Content/jquery.mobile-1.4.5.css",
+                "~/Content/site.css", 
+                "~/Content/PagedList.css"));
         }
     }
 }

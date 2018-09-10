@@ -1,20 +1,18 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using VyatkinSchool.Models;
 using VyatkinSchool.Models.AcountViewModels;
 using VyatkinSchool.Models.IdentityModels;
+using VyatkinSchool.Helpers;
 
 namespace VyatkinSchool.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -70,27 +68,59 @@ namespace VyatkinSchool.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            Log.Info("Login: Invoked");
+
             if (!ModelState.IsValid)
             {
+                Log.Info("Login: Model is not valid.");
                 return View(model);
             }
 
-            // Сбои при входе не приводят к блокированию учетной записи
-            // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
+            var loggedinUser = await UserManager.FindAsync(model.Email, model.Password);
+            if (loggedinUser != null)
+            {
+                Log.Info("Login: Change the security stamp.");
+                // change the security stamp only on correct username/password
+                await UserManager.UpdateSecurityStampAsync(loggedinUser.Id);
+            }
+            else
+            {
+                Log.Info("Login: User not logged in before.");
+            }
+
+            // do sign-in
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
+                {
+                    Log.Info("Login: Success.");
                     return RedirectToLocal(returnUrl);
+                }
                 case SignInStatus.LockedOut:
+                {
+                    Log.Info("Login: Lockout.");
                     return View("Lockout");
+                }
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                {
+                        Log.Info("Login: RequiresVerification.");
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                }
                 case SignInStatus.Failure:
                 default:
+                {
+                    Log.Info("Login: Failure.");
                     ModelState.AddModelError("", "Неудачная попытка входа.");
                     return View(model);
+                }
             }
+        }
+
+        [AllowAnonymous]
+        public virtual ActionResult Authenticated()
+        {
+            return Json(User.Identity.IsAuthenticated);
         }
 
         //
@@ -165,7 +195,7 @@ namespace VyatkinSchool.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("SixNews", "News");
                 }
                 AddErrors(result);
             }
@@ -393,8 +423,10 @@ namespace VyatkinSchool.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Log.Info("LogOff: Invoked");
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            Log.Info("LogOff: SignOut");
+            return RedirectToAction("SixNews", "News");
         }
 
         //
@@ -447,11 +479,14 @@ namespace VyatkinSchool.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
+            Log.Info($"RedirectToLocal: invoked with returnUrl=[{returnUrl}]");
             if (Url.IsLocalUrl(returnUrl))
             {
+                Log.Info($"RedirectToLocal: call Redirect=[{returnUrl}]");
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            Log.Info("RedirectToLocal: call RedirectToAction");
+            return RedirectToAction("SixNews", "News");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

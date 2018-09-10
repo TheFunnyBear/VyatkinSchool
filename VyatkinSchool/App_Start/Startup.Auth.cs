@@ -30,22 +30,22 @@ namespace VyatkinSchool
                     // Позволяет приложению проверять метку безопасности при входе пользователя.
                     // Эта функция безопасности используется, когда вы меняете пароль или добавляете внешнее имя входа в свою учетную запись.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                        validateInterval: TimeSpan.FromMinutes(30),
+                        validateInterval: TimeSpan.FromMinutes(0), // <-- Note the timer is set for zero
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
             });            
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            // app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Позволяет приложению временно хранить информацию о пользователе, пока проверяется второй фактор двухфакторной проверки подлинности.
-            app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
+            // app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
 
             // Позволяет приложению запомнить второй фактор проверки имени входа. Например, это может быть телефон или почта.
             // Если выбрать этот параметр, то на устройстве, с помощью которого вы входите, будет сохранен второй шаг проверки при входе.
             // Точно так же действует параметр RememberMe при входе.
-            app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
+            //app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
             // Раскомментируйте приведенные далее строки, чтобы включить вход с помощью сторонних поставщиков входа
-            //app.UseMicrosoftAccountAuthentication(
+            // app.UseMicrosoftAccountAuthentication(
             //    clientId: "",
             //    clientSecret: "");
 

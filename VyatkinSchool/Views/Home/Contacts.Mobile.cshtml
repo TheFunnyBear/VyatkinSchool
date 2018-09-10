@@ -1,0 +1,67 @@
+﻿@model VyatkinSchool.Models.Contacts
+
+@{
+    ViewBag.Title = "Контакты";
+}
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <table border="0" align="center" cellpadding="5" cellspacing="0">
+            <tr>
+                <td><strong>Тренер:</strong></td>
+                <td>@Model.FullName</td>
+            </tr>
+
+            <tr>
+                <td><strong><abbr title="E-Mail для связи">E-Mail:</abbr></strong></td>
+                <td><a href="mailto:>@Model.Email">@Model.Email</a></td>
+            </tr>
+
+            <tr>
+                <td><strong><abbr title="Контактный телефон">Телефон:</abbr></strong></td>
+                <td>@Model.Phone</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="resume-contacts-text">
+                        <strong><abbr title="Скачать файл с контной информацией">Файл с контной информацией: </abbr></strong>
+                    </div>
+                </td>
+                <td>
+                    <i>@Html.ActionLink("скачать", "VCardFile") </i>
+                </td>
+            </tr>
+        </table>
+
+        <table border="0" align="center" cellpadding="15" cellspacing="0" class="box">
+            <tr>
+                <td td colspan="2" align="center">
+                    <strong><abbr title="Занятия проводятся тут">Занятия проводятся в: </abbr></strong>
+                </td>
+            <tr />
+            <tr>
+                <td td colspan="2" align="center">
+                    <address>
+                        г. Севастополь, ул. Костомаровская, д3, в здании ДЮСШ "Чайка"
+                    </address>
+                </td>
+            </tr>
+        </table>
+
+        <table border="0" align="center" cellpadding="15" cellspacing="0" class="box">
+            <tr>
+                <td td colspan="2" align="center">
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0d6293e94346121f9f4f845e2e72e8ec2fad54abfb897d2ab1ed4863d2d57505&amp;width=350&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+                </td>
+            <tr />
+        </table>
+</div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

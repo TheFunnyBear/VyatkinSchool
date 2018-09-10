@@ -1,0 +1,56 @@
+﻿@using VyatkinSchool.Helpers
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – Школа Вольной Борьбы</title>
+    @Styles.Render("~/Content/Mobilecss")
+    @Scripts.Render("~/bundles/Mobilejs")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div data-role="footer">
+        <table border="0" align="center" cellpadding="2" cellspacing="0">
+            <tr>
+                <td align="right"><img width="120" src='~/Content/Logo/logo.png' /></td>
+                <td align="left"><h1>Школа Вольной Борьбы</h1></td>
+                </tr>
+        </table>
+        
+        
+    </div>
+    <div data-role="navbar" data-theme="a" data-iconpos="top">
+        <ul>
+            @Html.MobileMenuItem("Новости", "SixNews", "News")
+            @Html.MobileMenuItem("Галерея", "Show", "Gallery")
+            @Html.MobileMenuItem("Расписание", "TimeTable", "Home")
+            @Html.MobileMenuItem("Контакты", "Contacts", "Home")
+        </ul>
+
+    </div>
+
+
+    <div class="container body-content">
+        @RenderBody()
+
+        <footer>
+            <div data-role="footer">
+                <div id="copyright" class="container">
+                    <p>&copy; Школа Вольной Борьбы.</p>
+                    <small> Все права защищены.</small>
+                    <p><small>Разработал: <a href="http://kosolapov.info" rel="nofollow">Денис Косолапов</a></small></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

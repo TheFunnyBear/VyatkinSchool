@@ -1,16 +1,6 @@
 ﻿@using PagedList.Mvc;
+@using VyatkinSchool.Models
 
-#line default
-#line hidden
-
-#line 2 "c:\WORK\VyatkinSchool\VyatkinSchool\Views\Gallery\Show.cshtml"
-using PagedList;
-
-#line default
-#line hidden
-
-#line 3 "c:\WORK\VyatkinSchool\VyatkinSchool\Views\Gallery\Show.cshtml"
-using VyatkinSchool.Models;
 @model VyatkinSchool.Models.GalleryItem
 @{
     ViewBag.Title = "Просмотр изображения";
@@ -38,9 +28,9 @@ using VyatkinSchool.Models;
                 <td width="40%">Название альбома: </td>
                 <td width="60%">
                     @if (ViewBag.GalleryGroups != null)
-            {
-            @((ViewBag.GalleryGroups as List<GalleryGroupItem>).SingleOrDefault(galleryGroup => galleryGroup.Id == Model.GalleryId)?.GroupName)
-            }
+                    {
+                        @((ViewBag.GalleryGroups as List<GalleryGroupItem>).SingleOrDefault(galleryGroup => galleryGroup.Id == Model.GalleryId)?.GroupName)
+                    }
                 </td>
             </tr>
             <tr>

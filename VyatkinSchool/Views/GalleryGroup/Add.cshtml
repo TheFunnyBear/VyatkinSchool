@@ -9,10 +9,12 @@
             <h2>@ViewBag.Title.</h2>
         </div>
 
+        <h4>Заполните поля чтобы создать новый альбом для изображений.</h4>
+        <hr />
+
         @using (Html.BeginForm("Add", "GalleryGroup", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal was-validated", role = "form" }))
         {
-            <h4>Заполните поля чтобы создать новый альбом для изображений.</h4>
-            <hr />
+            @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })
 
             <table border="0" align="center" cellpadding="5" cellspacing="0">

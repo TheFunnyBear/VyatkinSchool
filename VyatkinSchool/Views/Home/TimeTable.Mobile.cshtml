@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Расписание";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title</h2>
+        </div>
+
+        <div class="box">
+            <table border="0" align="center" cellpadding="5" cellspacing="0" style="width:100%;">
+                <tr>
+                    <td>
+                        <p>Расписание занятий.</p>
+                    </td>
+                </tr>
+            </table>
+
+            <table data-role="table" id="time-table" data-mode="columntoggle:none" data-column-btn-theme="a" class="phone-compare ui-shadow table-stroke">
+                <thead>
+                    <tr>
+                        <th class="label">
+                            День
+                            недели
+                        </th>
+                        <th>
+                            <h3>Старшая группа</h3>
+                            <h4>(7 - 12 лет)</h4>
+                        </th>
+                        <th>
+                            <h3>Младшая группа</h3>
+                            <h4>(6 - 7 лет)</h4>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="label">Понедельник</th>
+                        <td>15:30 - 17:30</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <th class="label">Вторник</th>
+                        <td>15:30 - 17:30</td>
+                        <td>17:30 - 19:00</td>
+                    </tr>
+                    <tr>
+                        <th class="label">Среда</th>
+                        <td>15:30 - 17:30</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <th class="label">Четверг</th>
+                        <td>15:30 - 17:30</td>
+                        <td>17:30 - 19:00</td>
+                    </tr>
+                    <tr>
+                        <th class="label">Пятница</th>
+                        <td>15:30 - 17:30</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <th class="label">Суббота</th>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <th class="label">Воскресенье</th>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <table border="0" align="center" cellpadding="5" cellspacing="0" width="1000">
+                <tr>
+                    <td align="right">
+                        <p><small> Расписание составленно: 01.09.2018</small></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+

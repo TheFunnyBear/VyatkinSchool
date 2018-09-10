@@ -1,0 +1,11 @@
+﻿@model VyatkinSchool.Models.MessageItem
+
+<div class="box">
+    <img src='@Url.Action("ShowImageForGalleryItem", "Image", new { id = Model.ImageId })' width="300" hspace="5" alt="" />
+    <div class="details">
+        <p><strong>@Model.Date</strong></p>
+        <p>@Model.Title</p>
+    </div>
+    <a href="@Url.Action("Show", "Message", new {id = @Model.Id })" class="ui-btn ui-btn-inline">Подробнее</a>
+</div>
+

@@ -1,0 +1,96 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model VyatkinSchool.Models.SixNewsViewModel
+
+@{
+    ViewBag.Title = "Новости";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <div>
+            <h3>Добро пожаловать на сайт Школы Вольной Борьбы</h3>
+            <p>На этом ресурсе распологается контактная информация о Школе Вольной Борбы и успехах её воспитанников.</p>
+        </div>
+
+        <table border="0" align="center" cellpadding="2" cellspacing="0">
+            <tr>
+                <td align="center">
+                    @Html.PagedListPager((IPagedList)@Model.OnePageOfMessages, page => Url.Action("Index", new { page }))
+                </td>
+            </tr>
+        </table>
+
+        <table border="1" align="center" cellpadding="2" cellspacing="0">
+
+            @if (Model.IsTopLeftExist())
+            {
+                <tr>
+                    <td>
+                        <div class="ui-block-a"><div class="ui-bar ui-bar-a">@Html.Partial("News", @Model.TopLeft())</div></div>
+                    </td>
+                </tr>
+            }
+            @if (Model.IsTopCenterExist())
+            {
+                <tr>
+                    <td>
+                        <div class="ui-block-a"><div class="ui-bar ui-bar-a">@Html.Partial("News", @Model.TopCenter())</div></div>
+                    </td>
+                </tr>
+            }
+            @if (Model.IsTopRightExist())
+            {
+                <tr>
+                    <td>
+                        <div class="ui-block-a"><div class="ui-bar ui-bar-a">@Html.Partial("News", @Model.TopRight())</div></div>
+                    </td>
+                </tr>
+            }
+
+            @if (Model.IsBottomLeftExist())
+            {
+                <tr>
+                    <td>
+                        <div class="ui-block-a"><div class="ui-bar ui-bar-a">@Html.Partial("News", @Model.BottomLeft())</div></div>
+                    </td>
+                </tr>
+            }
+            @if (Model.IsBottomCenterExist())
+            {
+                <tr>
+                    <td>
+                        <div class="ui-block-a"><div class="ui-bar ui-bar-a">@Html.Partial("News", @Model.BottomCenter())</div></div>
+                    </td>
+                </tr>
+            }
+            @if (Model.IsBottomRightExist())
+            {
+                <tr>
+                    <td>
+                        <div class="ui-block-a"><div class="ui-bar ui-bar-a">@Html.Partial("News", @Model.BottomRight())</div></div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <table border="0" align="center" cellpadding="2" cellspacing="0">
+            <tr>
+                <td align="center">
+                    @Html.PagedListPager((IPagedList)@Model.OnePageOfMessages, page => Url.Action("Index", new { page }))
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

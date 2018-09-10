@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – Школа борьбы Олега Вяткина</title>
+    <title>@ViewBag.Title – Школа Вольной Борьбы</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -29,7 +29,7 @@
                 <ul class="nav navbar-nav">
                     @Html.Partial("_NewsPartial")
                     @Html.Partial("_GalleryPartial")
-                    @Html.MenuItem("Рассписание", "TimeTable", "Home")
+                    @Html.MenuItem("Расписание", "TimeTable", "Home")
                     @Html.MenuItem("Контакты", "Contacts", "Home")
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -41,7 +41,7 @@
         <hr />
         <footer>
             <div id="copyright" class="container">
-                <p>&copy; Школа борьбы Олега Вяткина. Все права защищены.</p>
+                <p>&copy; Школа Вольной Борьбы. Все права защищены.</p>
                 <p>Разработал: <a href="http://kosolapov.info" rel="nofollow">Денис Косолапов</a> | Дизайн: <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
             </div>
         </footer>
@@ -50,5 +50,24 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    @section scripts
+    {
+        <script>
+        window.setInterval(function() {
+            $.ajax({
+                url: "@Url.Action("Authenticated", "Account")",
+                type: "Post",
+                dataType: "json",
+                success: function(data) {
+                    if (!data) {
+                        alert("Кто-то вошел в систему, используя ваше имя пользователя и пароль!");
+                        location.reload();
+                    }
+                }
+            });
+        }, 60000);
+        </script>
+    }
 </body>
 </html>

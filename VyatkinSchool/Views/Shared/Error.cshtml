@@ -1,9 +1,36 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
 
 @{
-    ViewBag.Title = "Ошибка";
+    ViewBag.Title = ViewBag.Title ?? "Внутрення ошибка сервера";
 }
 
-<h1 class="text-danger">Ошибка.</h1>
-<h2 class="text-danger">При обработке запроса произошла ошибка.</h2>
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title</h2>
+        </div>
 
+        <div class="box">
+            <div class="list-sfs-holder">
+                <div class="alert alert-error">
+                    Произошла непредвиденная ошибка. Пожалуйста свяжитесь с системным администратором сайта.
+                </div>
+                @if (Model != null /*&& HttpContext.Current.IsDebuggingEnabled*/)
+                {
+                    <div>
+                        <p>
+                            <b>Exception:</b> @Model.Exception.Message<br />
+                            <b>Controller:</b> @Model.ControllerName<br />
+                            <b>Action:</b> @Model.ActionName
+                        </p>
+                        <div style="overflow: scroll">
+                            <pre>
+                    @Model.Exception.StackTrace
+                </pre>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

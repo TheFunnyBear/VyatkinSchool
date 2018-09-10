@@ -1,0 +1,95 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using VyatkinSchool.Models;
+
+@model IPagedList<GalleryGroupItem>
+
+@{
+    ViewBag.Title = "Галерея";
+}
+
+<div id="page">
+    <div class="container">
+    <div class="title">
+        <h2>@ViewBag.Title.</h2>
+    </div>
+
+    <table border="0" align="center" cellpadding="2" cellspacing="0" class="box">
+        <tr>
+            <td align="center">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Show", new { page }))
+            </td>
+        </tr>
+    </table>
+
+    <table border="0" align="center" cellpadding="2" cellspacing="0" class="box">
+
+    @foreach (var pictureGroup in @Model)
+    {
+        for (int galleryItemIndex = 0; galleryItemIndex < (int)ViewBag.ItemsCount; galleryItemIndex++)
+        {
+            var galleryItem = (ViewBag.GalleryItems as List<GalleryItem>).ElementAt(galleryItemIndex);
+            var popupItem = string.Format("#popupItem{0}", galleryItemIndex);
+            <tr>
+                <td align="center">
+                    <a href="@popupItem" data-rel="popup" data-position-to="window" data-transition="fade">
+                        <img class="popphoto" src='@Url.Action("show", "Image", new { id = galleryItem.ImageId })' alt="@galleryItem.Title" style="width:50%">
+                    </a>
+                </td>
+            </tr>
+
+            if (!string.IsNullOrWhiteSpace(galleryItem.Title))
+            {
+                <tr>
+                    <td align="center">
+                        <p><strong>@galleryItem.Title.Trim(' ')</strong></p>
+                    </td>
+                </tr>
+            }
+
+            if (!string.IsNullOrWhiteSpace(galleryItem.Description))
+            {
+                <tr>
+                    <td align="center">
+                        <p>@galleryItem.Description.Trim(' ')</p>
+                    </td>
+                </tr>
+            }
+        }
+    }
+    </table>
+
+    @foreach (var pictureGroup in @Model)
+    {
+        for (int galleryItemIndex = 0; galleryItemIndex < (int)ViewBag.ItemsCount; galleryItemIndex++)
+        {
+            var galleryItem = (ViewBag.GalleryItems as List<GalleryItem>).ElementAt(galleryItemIndex);
+            var popupItem = string.Format("popupItem{0}", galleryItemIndex);
+
+            <div data-role="popup" id="@popupItem" data-overlay-theme="b" data-theme="b" data-corners="false">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">
+                    Закрыть
+                </a>
+                <img class="popphoto" src='@Url.Action("show", "Image", new { id = @galleryItem.ImageId})' style="max-height:512px;" alt="@galleryItem.Title">
+
+            </div>
+        }
+    }
+
+    <table border="0" align="center" cellpadding="2" cellspacing="0" class="box">
+        <tr>
+            <td align="center">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Show", new { page }))
+            </td>
+        </tr>
+    </table>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

@@ -5,8 +5,11 @@ using VyatkinSchool.Models.IdentityModels;
 
 namespace VyatkinSchool.Controllers
 {
+    [Authorize]
+    [RequireHttps]
     public class ImageController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Show(int id)
         {
             using (var dataBase = new ApplicationDbContext())
@@ -17,6 +20,7 @@ namespace VyatkinSchool.Controllers
             }
         }
 
+        [AllowAnonymous]
         public ActionResult ShowImageForGalleryItem(int id)
         {
             using (var dataBase = new ApplicationDbContext())

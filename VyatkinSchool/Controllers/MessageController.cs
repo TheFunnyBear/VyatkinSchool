@@ -9,6 +9,7 @@ using VyatkinSchool.Models.IdentityModels;
 namespace VyatkinSchool.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class MessageController : Controller
     {
         // GET: Message

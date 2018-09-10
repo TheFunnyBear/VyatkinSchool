@@ -7,6 +7,7 @@ using VyatkinSchool.Models.IdentityModels;
 namespace VyatkinSchool.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class GalleryGroupController : Controller
     {
         // GET: GalleryGroup
