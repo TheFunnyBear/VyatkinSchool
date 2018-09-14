@@ -91,7 +91,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ImageControllerImageControllerTests.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Features\Gallery.feature.cs">
       <AutoGen>True</AutoGen>
@@ -99,7 +98,6 @@
       <DependentUpon>Gallery.feature</DependentUpon>
     </Compile>
     <Compile Include="Steps\GallerySteps.cs" />
-    <Compile Include="HomeControllerModuleTest.cs" />
     <Compile Include="NaviBarTests.cs" />
     <Compile Include="Steps\BrowserNavigator.cs" />
     <Compile Include="Steps\ButtonCliker.cs" />

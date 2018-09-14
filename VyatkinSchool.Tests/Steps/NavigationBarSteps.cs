@@ -42,14 +42,14 @@ namespace VyatkinSchool.Tests.Steps
         [Then(@"Check that Contacts page is opened")]
         public void CheckThatContactsageOpnned()
         {
-            const string pageHederValue = "КОНТАКТЫ";
-            _headerChecker.CheckThatHeaderContainsText(pageHederValue);
+            const string pageHederValue = "Контакты.";
+            _headerChecker.CheckThatHeader2ContainsText(pageHederValue);
         }
 
         [Then(@"Check that Gallery button is active")]
         public void CheckThatGalleryPageActive()
         {
-            const string buttonText = "Галлерея";
+            const string buttonText = "Галерея";
             _headerButtonChecker.CheckThatHeaderButtonWithTextActive(buttonText);
 
             foreach (var notExpectedButton in GetNotExpectedButtons(buttonText))
@@ -61,14 +61,14 @@ namespace VyatkinSchool.Tests.Steps
         [Then(@"Check that Gallery page is opened")]
         public void CheckThatGalleryPageOpnned()
         {
-            const string pageHederValue = "ГАЛЛЕРЕЯ";
-            _headerChecker.CheckThatHeaderContainsText(pageHederValue);
+            const string pageHederValue = "Галерея.";
+            _headerChecker.CheckThatHeader2ContainsText(pageHederValue);
         }
 
         [Then(@"Check that Login button is active")]
         public void CheckThatLoginActive()
         {
-            const string buttonText = "Вход";
+            const string buttonText = "Выполнить вход";
             _headerButtonChecker.CheckThatHeaderButtonWithTextActive(buttonText);
 
             foreach (var notExpectedButton in GetNotExpectedButtons(buttonText))
@@ -80,8 +80,8 @@ namespace VyatkinSchool.Tests.Steps
         [Then(@"Check that Login page is opened")]
         public void CheckThatLoginOpnned()
         {
-            const string pageHederValue = "Доступ к публикациям";
-            _headerChecker.CheckThatHeaderContainsText(pageHederValue);
+            const string pageHederValue = "Выполнить вход.";
+            _headerChecker.CheckThatHeader2ContainsText(pageHederValue);
         }
 
         [Then(@"Check that News button is active")]
@@ -99,8 +99,8 @@ namespace VyatkinSchool.Tests.Steps
         [Then(@"Check that News page is opened")]
         public void CheckThatNewsPageOpnned()
         {
-            const string pageHederValue = "Добро пожаловать на сайт Школы Вольной Борьбы - Олега Вяткина";
-            _headerChecker.CheckThatHeaderContainsText(pageHederValue);
+            const string pageHederValue = "Добро пожаловать на сайт Школы Вольной Борьбы";
+            _headerChecker.CheckThatHeader3ContainsText(pageHederValue);
         }
 
         [Then(@"Check that  Time table page is active")]
@@ -119,7 +119,7 @@ namespace VyatkinSchool.Tests.Steps
         public void CheckThatTimeTablePageOpnned()
         {
             const string pageHederValue = "Расписание";
-            _headerChecker.CheckThatHeaderContainsText(pageHederValue);
+            _headerChecker.CheckThatHeader2ContainsText(pageHederValue);
         }
 
         [When(@"Click on Contacts button in web page navigation header")]
@@ -133,14 +133,14 @@ namespace VyatkinSchool.Tests.Steps
         [When(@"Click on Gallery button in web page navigation header")]
         public void ClickOnGalleryHeader()
         {
-            const string linkText = "Галлерея";
+            const string linkText = "Галерея";
             _linkCliker.ClickOnLinkWithText(linkText);
         }
 
         [When(@"Click on Login button in web page navigation header")]
         public void ClickOnLoginHeader()
         {
-            const string linkText = "Вход";
+            const string linkText = "Выполнить вход";
             _linkCliker.ClickOnLinkWithText(linkText);
         }
 
@@ -163,10 +163,10 @@ namespace VyatkinSchool.Tests.Steps
             var notExpectedButtonsList = new List<string>
             {
                 "Новости",
-                "Галлерея",
+                "Галерея",
                  "Расписание",
                 "Контакты",
-                "Вход"
+                "Выполнить вход"
              };
             return notExpectedButtonsList.Except(new[] { expectedButton });
         }

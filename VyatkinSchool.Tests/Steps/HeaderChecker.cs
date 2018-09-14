@@ -14,9 +14,24 @@ namespace VyatkinSchool.Tests.Steps
             _browser = browser;
         }
 
-        public void CheckThatHeaderContainsText(string text)
+        public void CheckThatHeader1ContainsText(string text)
         {
-            var headers = _browser.GetDriver().FindElements(By.TagName("h2"));
+            CheckThatHeaderContainsText("h1", text);
+        }
+
+        public void CheckThatHeader2ContainsText(string text)
+        {
+            CheckThatHeaderContainsText("h2", text);
+        }
+
+        public void CheckThatHeader3ContainsText(string text)
+        {
+            CheckThatHeaderContainsText("h3", text);
+        }
+
+        public void CheckThatHeaderContainsText(string hederNumber, string text)
+        {
+            var headers = _browser.GetDriver().FindElements(By.TagName(hederNumber));
             var creatMessageHeader = headers.SingleOrDefault(element => element.Text.Equals(text, StringComparison.OrdinalIgnoreCase));
 
             if (creatMessageHeader == null)

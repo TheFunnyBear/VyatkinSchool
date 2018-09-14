@@ -29,13 +29,13 @@ namespace VyatkinSchool.Tests.Steps
         public void CheckThatNewMessageCreatedPageOpened()
         {
             const string creatMessagePageText = "Добавление сообщения";
-            _headerChecker.CheckThatHeaderContainsText(creatMessagePageText);
+            _headerChecker.CheckThatHeader2ContainsText(creatMessagePageText);
         }
 
         [Then(@"Check that title shown (.*) for new message")]
         public void CheckThatTitleShownForNewMessage(string title)
         {
-            _headerChecker.CheckThatHeaderContainsText(title);
+            _headerChecker.CheckThatHeader2ContainsText(title);
         }
 
         [Then(@"Check that text shown (.*) for new message")]

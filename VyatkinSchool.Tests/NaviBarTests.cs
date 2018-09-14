@@ -1,11 +1,11 @@
 ﻿using Microsoft.Practices.Unity;
 using VyatkinSchool.Tests.Steps;
 using VyatkinSchool.Tests.Constants;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace VyatkinSchool.Tests
 {
-    [TestFixture]
+    [TestClass]
     public sealed class NaviBarTests : UnitTestBase
     {
         [Dependency]
@@ -23,7 +23,7 @@ namespace VyatkinSchool.Tests
         [Dependency]
         public INavigationBarSteps NavigationBarSteps { get; set; }
 
-        [SetUp]
+        [TestInitialize]
         public override void TestInitialize()
         {
             base.TestInitialize();
@@ -34,13 +34,13 @@ namespace VyatkinSchool.Tests
             NavigationBarSteps = Container.Resolve<INavigationBarSteps>();
         }
 
-        [TearDown]
+        [TestCleanup]
         public override void TestCleanup()
         {
             OpenBrowserSteps.CloseBrowser();
         }
 
-        [Test]
+        [TestMethod]
         public void NewsPageShown()
         {
             OpenBrowserSteps.OpenBrowser();
@@ -54,7 +54,7 @@ namespace VyatkinSchool.Tests
             NavigationBarSteps.CheckThatNewsPageOpnned();
         }
 
-        [Test]
+        [TestMethod]
         public void GaleryPageShown()
         {
             OpenBrowserSteps.OpenBrowser();
@@ -65,7 +65,7 @@ namespace VyatkinSchool.Tests
             NavigationBarSteps.CheckThatGalleryPageOpnned();
         }
 
-        [Test]
+        [TestMethod]
         public void TimeTablePageShown()
         {
             OpenBrowserSteps.OpenBrowser();
@@ -76,7 +76,7 @@ namespace VyatkinSchool.Tests
             NavigationBarSteps.CheckThatTimeTablePageOpnned();
         }
 
-        [Test]
+        [TestMethod]
         public void ContactsPageShown()
         {
             OpenBrowserSteps.OpenBrowser();
@@ -87,7 +87,7 @@ namespace VyatkinSchool.Tests
             NavigationBarSteps.CheckThatContactsageOpnned();
         }
 
-        [Test]
+        [TestMethod]
         public void LoginPageShown()
         {
             OpenBrowserSteps.OpenBrowser();
@@ -98,7 +98,7 @@ namespace VyatkinSchool.Tests
             NavigationBarSteps.CheckThatLoginOpnned();
         }
 
-        [Test]
+        [TestMethod]
         public void NewsPageActive()
         {
             OpenBrowserSteps.OpenBrowser();
@@ -107,7 +107,7 @@ namespace VyatkinSchool.Tests
             NavigationBarSteps.CheckThatNewsPageActive();
         }
 
-        [Test]
+        [TestMethod]
         public void GaleryPageActive()
         {
             OpenBrowserSteps.OpenBrowser();
@@ -118,7 +118,7 @@ namespace VyatkinSchool.Tests
             NavigationBarSteps.CheckThatGalleryPageActive();
         }
 
-        [Test]
+        [TestMethod]
         public void TimeTablePageActive()
         {
             OpenBrowserSteps.OpenBrowser();
@@ -129,7 +129,7 @@ namespace VyatkinSchool.Tests
             NavigationBarSteps.CheckThatTimeTablePageActive();
         }
 
-        [Test]
+        [TestMethod]
         public void ContactsPageActive()
         {
             OpenBrowserSteps.OpenBrowser();
@@ -140,7 +140,7 @@ namespace VyatkinSchool.Tests
             NavigationBarSteps.CheckThatContactsButtonActive();
         }
 
-        [Test]
+        [TestMethod]
         public void LoginPagActive()
         {
             OpenBrowserSteps.OpenBrowser();

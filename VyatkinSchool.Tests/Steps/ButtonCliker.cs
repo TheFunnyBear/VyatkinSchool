@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace VyatkinSchool.Tests.Steps
 {
+
     public sealed class ButtonCliker : IButtonCliker
     {
         private readonly IBrowserNavigator _browser;

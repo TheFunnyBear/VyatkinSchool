@@ -29,28 +29,37 @@ namespace VyatkinSchool.Tests.Steps
 
         private IWebElement FindHeaderButtonWithText(string linkText)
         {
-            var menu =_browser.GetDriver().FindElements(By.Id("menu")).SingleOrDefault();
-            if (menu == null)
+            var menus = _browser.GetDriver().FindElements(By.ClassName("navbar-nav"));
+            IWebElement listItemWithExpectedText = null;
+            foreach (var menu in menus)
             {
-                Assert.Fail("Can't find menu element with links");
-            }
-
-            IList<IWebElement> listItemElements = menu.FindElements(By.TagName("li"));
-
-            var listItemWithExpectedText = listItemElements.SingleOrDefault(element => {
-                var embededLinks = element.FindElements(By.TagName("a"));
-                var embededLink = embededLinks.SingleOrDefault();
-                if (embededLink == null)
+                if (menu == null)
                 {
-                    Assert.Fail("Can't find list item with embed link");
+                    Assert.Fail("Can't find menu element with links");
                 }
-                else
+
+                IList<IWebElement> listItemElements = menu.FindElements(By.TagName("li"));
+
+                listItemWithExpectedText = listItemElements.SingleOrDefault(element =>
                 {
-                    return embededLink.Text.Equals(linkText, StringComparison.OrdinalIgnoreCase);
+                    var embededLinks = element.FindElements(By.TagName("a"));
+                    var embededLink = embededLinks.SingleOrDefault();
+                    if (embededLink == null)
+                    {
+                        Assert.Fail("Can't find list item with embed link");
+                    }
+                    else
+                    {
+                        return embededLink.Text.Equals(linkText, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
                 }
-                return false;
+                );
+                if (listItemWithExpectedText != null)
+                {
+                    break;
+                }
             }
-            );
 
             if (listItemWithExpectedText == null)
             {

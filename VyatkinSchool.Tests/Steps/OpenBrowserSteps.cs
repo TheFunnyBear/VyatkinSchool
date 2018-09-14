@@ -43,8 +43,11 @@ namespace VyatkinSchool.Tests.Steps
         [Then(@"Check than main page opened")]
         public void CheckThatMainPageOpnned()
         {
-            const string creatMessagePageText = "ДОБРО ПОЖАЛОВАТЬ НА САЙТ ШКОЛЫ ВОЛЬНОЙ БОРЬБЫ - ОЛЕГА ВЯТКИНА";
-            _headerChecker.CheckThatHeaderContainsText(creatMessagePageText);
+            const string headerText = "НОВОСТИ.";
+            _headerChecker.CheckThatHeader2ContainsText(headerText);
+
+            const string creatMessagePageText = "Добро пожаловать на сайт Школы Вольной Борьбы";
+            _headerChecker.CheckThatHeader3ContainsText(creatMessagePageText);
         }
     }
 }

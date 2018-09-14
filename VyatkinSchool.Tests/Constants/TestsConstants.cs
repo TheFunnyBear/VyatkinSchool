@@ -2,7 +2,7 @@
 {
     public sealed class TestsConstants : ITestsConstants
     {
-        public string WebSiteHttpAddress => "http://test.kosolapov.info";
-        public string WebSiteTitle => "Школа борьбы Олега Вяткина";
+        public string WebSiteHttpAddress => "https://www.sevwrestling.ru/";
+        public string WebSiteTitle => "Новости – Школа Вольной Борьбы";
     }
 }

@@ -39,7 +39,7 @@ namespace VyatkinSchool.Tests.Steps
         public void CheckThatNewMessagePageOpened()
         {
             const string creatMessagePageText = "Создать сообщение";
-            _headerChecker.CheckThatHeaderContainsText(creatMessagePageText);
+            _headerChecker.CheckThatHeader3ContainsText(creatMessagePageText);
         }
 
         [When(@"Add title (.*) for new message")]
@@ -109,8 +109,6 @@ namespace VyatkinSchool.Tests.Steps
         public void CheckThatMainPageContainsMessageWithPicture(string title)
         {
             var boxElements = _browser.GetDriver().FindElements(By.ClassName("box"));
-            var isPictureExist = false;
-
             var boxElementsWithDetails = boxElements.Where(element => element.FindElements(By.ClassName("details")).Any());
             var boxElementWithExpectedTitle = boxElementsWithDetails.SingleOrDefault(detailsElement =>
             {
