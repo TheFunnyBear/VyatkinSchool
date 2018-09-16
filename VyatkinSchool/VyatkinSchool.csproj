@@ -232,11 +232,21 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Log.cs" />
     <Compile Include="Helpers\MenuExtensions.cs" />
+    <Compile Include="Migrations\201808271846460_InitialCreate.cs" />
+    <Compile Include="Migrations\201808271846460_InitialCreate.Designer.cs">
+      <DependentUpon>201808271846460_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809141153494_Update1.cs" />
+    <Compile Include="Migrations\201809141153494_Update1.Designer.cs">
+      <DependentUpon>201809141153494_Update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AcountViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\AcountViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\AcountViewModels\ForgotPasswordViewModel.cs" />
@@ -262,6 +272,7 @@
     <Compile Include="Models\ManageViewModels\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Models\MessageItem.cs" />
     <Compile Include="Models\SixNews.cs" />
+    <Compile Include="Models\VideoFileItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -592,6 +603,17 @@
     <Content Include="Views\Gallery\Show.Mobile.cshtml" />
     <Content Include="Views\Message\Show.Mobile.cshtml" />
     <Content Include="Views\News\News.Mobile.cshtml" />
+    <Content Include="Views\Video\Add.cshtml" />
+    <Content Include="Views\Video\Created.cshtml" />
+    <Content Include="Views\Video\Delete.cshtml" />
+    <Content Include="Views\Video\Deleted.cshtml" />
+    <Content Include="Views\Video\Edit.cshtml" />
+    <Content Include="Views\Video\List.cshtml" />
+    <Content Include="Views\Video\Modified.cshtml" />
+    <Content Include="Views\Video\Show.cshtml" />
+    <Content Include="Views\Video\Show.Mobile.cshtml" />
+    <Content Include="Views\Video\ShowItem.cshtml" />
+    <Content Include="Views\Shared\_VideoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -609,6 +631,14 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808271846460_InitialCreate.resx">
+      <DependentUpon>201808271846460_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809141153494_Update1.resx">
+      <DependentUpon>201809141153494_Update1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

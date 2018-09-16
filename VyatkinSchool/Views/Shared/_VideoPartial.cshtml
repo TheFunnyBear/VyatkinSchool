@@ -1,0 +1,13 @@
+﻿@using VyatkinSchool.Helpers
+
+@if (Request.IsAuthenticated)
+{
+    @Html.MenuItem("Видео", "Show", "Video")
+    @Html.MenuItem("Список видео", "List", "Video")
+
+}
+else
+{
+    @Html.MenuItem("Видео", "Show", "Video")
+}
+

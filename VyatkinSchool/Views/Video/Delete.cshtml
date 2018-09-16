@@ -1,0 +1,67 @@
+﻿@model VyatkinSchool.Models.VideoFileItem
+@{
+    ViewBag.Title = "Удалить видео";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <h4>Подтвердите удаление видео.</h4>
+        <hr />
+
+        @using (Html.BeginForm("Delete", "Video", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal was-validated", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <table border="0" align="center" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td align="right" width="40%"><strong>Заголовок:</strong></td>
+                    <td align="left" width="60%">@Model.Title</td>
+                </tr>
+                <tr>
+                    <td align="right" width="40%"><strong>Описание:</strong></td>
+                    <td align="left" width="60%">@Model.Description</td>
+                </tr>
+                <tr align="center">
+                    <td colspan="2" align="center">
+                        <p>
+                            <video style="width:600px; height:auto;" controls>
+                                <source src="@Url.Content(@Model.FilePath)" type="video/mp4" />
+                            </video>
+                        </p>
+                    </td>
+                </tr>
+                <tr align="right">
+                    <td></td>
+                    <td>
+                        <button class="btn btn-danger" type="submit">
+                            Удалить
+                            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                        </button>
+
+                        <a href="@Url.Action("List", "Video")" class="btn btn-primary ">
+                            Отменить
+                            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+                        </a>
+                    <td>
+                </tr>
+            </table>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+

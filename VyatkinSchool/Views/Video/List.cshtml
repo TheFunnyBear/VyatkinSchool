@@ -1,0 +1,95 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using VyatkinSchool.Models;
+
+@model IPagedList<VideoFileItem>
+
+@{
+    ViewBag.Title = "Список видео";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <hr />
+        <a href="@Url.Action("Add", "Video")" class="btn btn-primary">
+            Добавить видео
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a>
+
+        <hr />
+
+        <div class="box">
+
+            <table border="0" align="center" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td align="center">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("List", new { page }))
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0" align="center" cellpadding="5" cellspacing="0">
+                <tr>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Заголовок</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Описание</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Видео</th>
+                    <th align="center" bgcolor="#4C4532" style="color:rgba(255,255,255,0.6)">Действия</th>
+                </tr>
+
+                @foreach (VideoFileItem videoFileItem in @Model)
+                {
+                    <tr>
+                        <td align="left">
+                            <p>@videoFileItem.Title</p>
+                        </td>
+                        <td align="left">
+                            <p>@videoFileItem.Description</p>
+                        </td>
+                        <td align="left">
+                            <a href="@Url.Action("ShowItem", "Video", new { videoFileItem.Id })">
+                                <p>
+                                    <video style="width:200px; height:auto;" controls>
+                                        <source src="@Url.Content(videoFileItem.FilePath)" type="video/mp4" />
+                                    </video>
+                                </p>
+                            </a>
+                        </td>
+                        <td align="center">
+                            <a href="@Url.Action("ShowItem", "Video", new { videoFileItem.Id })" class="btn btn-primary">
+                                Просмотреть
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                            </a>
+                            <a href="@Url.Action("Edit", "Video", new { videoFileItem.Id })" class="btn btn-primary">
+                                Редактировать
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </a>
+                            <a href="@Url.Action("Delete", "Video", new { videoFileItem.Id })" class="btn btn-danger">
+                                Удалить
+                                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <table border="0" align="center" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td align="center">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("List", new { page }))
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

@@ -1,0 +1,54 @@
+﻿@model VyatkinSchool.Models.VideoFileItem
+@{
+    ViewBag.Title = "Видео успешно отредактированно";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <hr />
+        <a href="@Url.Action("Add", "Video")" class="btn btn-primary">
+            Добавить новое видео
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a>
+
+        <a href="@Url.Action("Show", "Video")" class="btn btn-primary">
+            Перейти к разделу "Видео"
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        </a>
+
+        <a href="@Url.Action("List", "Video")" class="btn btn-primary">
+            Перейти к списку видео
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        </a>
+        <hr />
+
+        <table border="0" align="center" cellpadding="5" cellspacing="0">
+            <tr>
+                <td align="right" width="40%"><strong>Заголовок:</strong></td>
+                <td align="left" width="60%">@Html.DisplayTextFor(x => x.Title)</td>
+            </tr>
+            <tr>
+                <td align="right" width="40%"><strong>Описание:</strong></td>
+                <td align="left" width="60%">@Html.DisplayTextFor(x => x.Description)</td>
+            </tr>
+            <tr align="center">
+                <td colspan="2" align="center">
+                    <p>
+                        <video style="width:600px; height:auto;" controls>
+                            <source src="@Url.Content(@Model.FilePath)" type="video/mp4" />
+                        </video>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

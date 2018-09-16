@@ -1,0 +1,62 @@
+﻿@model VyatkinSchool.Models.VideoFileItem
+@{
+    ViewBag.Title = "Добавить видео";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <h4>Заполните поля чтобы добавить видео.</h4>
+        <hr />
+
+        @using (Html.BeginForm("Add", "Video", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal was-validated", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <table border="0" align="center" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td width="40%">Укажите файл с видео: </td>
+                    <td width="60%">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="uploadVideoFile" name="uploadVideoFile">
+                                <label class="custom-file-label" for="uploadVideoFile">Выбирите файл..</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%">Укажите заголовок нового видео:</td>
+                    <td width="60%">@Html.TextBoxFor(x => x.Title, new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td width="40%">Укажите описание для видео:</td>
+                    <td width="60%">@Html.TextBoxFor(x => x.Description, new { @class = "form-control" })</td>
+                </tr>
+                <tr align="right">
+                    <td width="40%"></td>
+                    <td width="60%">
+                        <button class="btn btn-success" type="submit">
+                            Добавить видео
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        </button>
+
+                        <a href="@Url.Action("List", "Video")" class="btn btn-primary ">
+                            Отменить
+                            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

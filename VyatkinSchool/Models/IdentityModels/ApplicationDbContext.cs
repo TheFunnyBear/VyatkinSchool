@@ -32,6 +32,7 @@ namespace VyatkinSchool.Models.IdentityModels
         public virtual DbSet<GalleryGroupItem> GalleryGroups { get; set; }
         public virtual DbSet<MessageItem> Messages { get; set; }
         public virtual DbSet<GalleryItem> Gallery { get; set; }
+        public virtual DbSet<VideoFileItem> Video { get; set; }
         public virtual DbSet<ImageItem> Images { get; set; }
     }
 }

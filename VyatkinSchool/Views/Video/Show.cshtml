@@ -1,0 +1,65 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using VyatkinSchool.Models;
+
+@model IPagedList<VideoFileItem>
+
+@{
+    ViewBag.Title = "Видео";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        @if (Model == null || Model.Count == 0)
+        {
+            <b>Видео не найдено.</b>
+        }
+        else
+        {
+            <table border="0" align="center" cellpadding="2" cellspacing="0" class="box">
+                <tr>
+                    <td align="center">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Show", new { page }))
+                    </td>
+                </tr>
+                @foreach (var videoFile in Model)
+                {
+                    <tr>
+                        <td align="center"><h4>@videoFile.Title</h4></td>
+                    </tr>
+                    <tr>
+                        <td align="center">@videoFile.Description</td>
+                    </tr>
+
+                    <tr>
+                        <td align="center" width="1000">
+                            <div class="video-frame">
+                                <video style="width:100%; height:auto;" controls>
+                                    <source src="@Url.Content(@videoFile.FilePath)" type="video/mp4" />
+                                </video>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td align="center">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Show", new { page }))
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
