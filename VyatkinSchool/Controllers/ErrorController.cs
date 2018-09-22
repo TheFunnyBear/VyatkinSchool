@@ -1,28 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 
 namespace VyatkinSchool.Controllers
 {
-    public class ErrorController : Controller
+    public class ErrorController : SchoolBaseController
     {
         //
         // GET: /Error/
 
         public ActionResult Index()
         {
-            return RedirectToAction("GenericError", new HandleErrorInfo(new HttpException(403, "Dont allow access the error pages"), "ErrorController", "Index"));
+            IncrementPageCounters();
+            return RedirectToAction("GenericError", new HandleErrorInfo(new HttpException(403, "Don't allow access the error pages"), "ErrorController", "Index"));
         }
 
         public ViewResult GenericError(HandleErrorInfo exception)
         {
+            IncrementPageCounters();
             return View("Error", exception);
         }
 
         public ViewResult NotFound(HandleErrorInfo exception)
         {
+            IncrementPageCounters();
             ViewBag.Title = "Page Not Found";
             return View("Error", exception);
         }

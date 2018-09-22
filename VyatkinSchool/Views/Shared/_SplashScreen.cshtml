@@ -1,0 +1,17 @@
+﻿@Scripts.Render("~/bundles/splashscreen")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.SplashScreen({
+            progressCount: true,
+            progressBar: true
+        });
+    });
+</script>
+
+<div id="splashscreen">
+    <img id="logo" src='~/Content/Logo/logo.png' />
+    <div id="progress"></div>
+    <div id="status"></div>
+</div>
+

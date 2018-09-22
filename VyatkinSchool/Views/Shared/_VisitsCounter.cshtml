@@ -1,0 +1,7 @@
+﻿@if (Request.IsAuthenticated)
+{
+    if (ViewBag.VisitsCount != null && ViewBag.VisitsCount != 0)
+    {
+        <p>Количество отображений этой страницы: @ViewBag.VisitsCount</p>
+    }
+}

@@ -19,6 +19,9 @@ namespace VyatkinSchool
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/splashscreen").Include(
+                      "~/Scripts/jquery.SplashScreen.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/fonts.css",
@@ -34,6 +37,9 @@ namespace VyatkinSchool
                 "~/Content/jquery.mobile-1.4.5.css",
                 "~/Content/site.css", 
                 "~/Content/PagedList.css"));
+
+            bundles.Add(new StyleBundle("~/Content/splashscreen").Include(
+                "~/Content/jquery.SplashScreen.css"));
         }
     }
 }

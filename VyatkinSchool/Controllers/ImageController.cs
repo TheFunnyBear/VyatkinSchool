@@ -7,11 +7,12 @@ namespace VyatkinSchool.Controllers
 {
     [Authorize]
     [RequireHttps]
-    public class ImageController : Controller
+    public class ImageController : SchoolBaseController
     {
         [AllowAnonymous]
         public ActionResult Show(int id)
         {
+            IncrementPageCounters();
             using (var dataBase = new ApplicationDbContext())
             {
                 var galleryItem = dataBase.Images.SingleOrDefault(item => item.Id == id);
@@ -23,6 +24,7 @@ namespace VyatkinSchool.Controllers
         [AllowAnonymous]
         public ActionResult ShowImageForGalleryItem(int id)
         {
+            IncrementPageCounters();
             using (var dataBase = new ApplicationDbContext())
             {
                 var gallery = dataBase.Gallery.SingleOrDefault(galleryItem => galleryItem.Id == id);

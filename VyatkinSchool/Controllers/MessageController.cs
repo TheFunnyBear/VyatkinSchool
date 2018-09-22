@@ -10,7 +10,7 @@ namespace VyatkinSchool.Controllers
 {
     [Authorize]
     [RequireHttps]
-    public class MessageController : Controller
+    public class MessageController : SchoolBaseController
     {
         // GET: Message
         [AllowAnonymous]
@@ -25,6 +25,8 @@ namespace VyatkinSchool.Controllers
         {
             if (id != null)
             {
+                IncrementPageCounters();
+
                 using (var dataBase = new ApplicationDbContext())
                 {
                     var messageForShow = dataBase.Messages.SingleOrDefault(message => message.Id == id);
@@ -216,6 +218,8 @@ namespace VyatkinSchool.Controllers
         // GET: /Message/List
         public ActionResult List(int? page)
         {
+            IncrementPageCounters();
+
             using (var dataBase = new ApplicationDbContext())
             {
                 var pageNumber = page ?? 1;

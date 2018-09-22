@@ -8,6 +8,8 @@
     ViewBag.Title = "Видео";
 }
 
+@Html.Partial("_SplashScreen")
+
 <div id="page">
     <div class="container">
         <div class="title">
@@ -52,14 +54,12 @@
                 </tr>
             </table>
         }
+
+        @Html.Partial("_VisitsCounter")
     </div>
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-
-
-
-

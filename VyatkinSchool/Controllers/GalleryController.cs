@@ -9,7 +9,7 @@ namespace VyatkinSchool.Controllers
 {
     [Authorize]
     [RequireHttps]
-    public class GalleryController : Controller
+    public class GalleryController : SchoolBaseController
     {
         // GET: Gallery
         [AllowAnonymous]
@@ -139,6 +139,7 @@ namespace VyatkinSchool.Controllers
         [AllowAnonymous]
         public ActionResult Show(int? page)
         {
+            IncrementPageCounters();
             using (var dataBase = new ApplicationDbContext())
             {
                 var pageNumber = page ?? 1;
@@ -177,6 +178,7 @@ namespace VyatkinSchool.Controllers
                 return RedirectToAction("Show", "Gallery");
             }
 
+            IncrementPageCounters();
             using (var dataBase = new ApplicationDbContext())
             {
                 var item = dataBase.Gallery.SingleOrDefault(galleryItem => galleryItem.Id == id);
@@ -192,6 +194,8 @@ namespace VyatkinSchool.Controllers
         // GET: /Gallery/List
         public ActionResult List(int? page)
         {
+            IncrementPageCounters();
+
             using (var dataBase = new ApplicationDbContext())
             {
                 var pageNumber = page ?? 1;

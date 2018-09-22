@@ -3,41 +3,47 @@
     ViewBag.Title = @Model.Date + @Model.Title;
 }
 
+@Html.Partial("_SplashScreen")
+
 <div id="page">
     <div class="container">
         <div class="title">
             <h4><b>@Model.Date</b> @Model.Title.</h4>
         </div>
 
-         <div class="box">
-             <table border="0" align="center" cellpadding="15" cellspacing="0">
-                 <tr>
-                     <td align="left" width="100%">
-                         @Html.Raw(Model.MessageText)
-                     </td>
-                 </tr>
-                 <tr>
-                     <td align="center" width="100%">
-                         @if (Model.ImageId != null)
-                         {
-                             <img  width ="900" src='@Url.Action("ShowImageForGalleryItem", "Image", new { id = Model.ImageId})' />
-                         }
-                     </td>
-                 </tr>
+        <div class="box">
+            <table border="0" align="center" cellpadding="15" cellspacing="0">
+                <tr>
+                    <td align="left" width="100%">
+                        @Html.Raw(Model.MessageText)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" width="100%">
+                        @if (Model.ImageId != null)
+                        {
+                            <img width="900" src='@Url.Action("ShowImageForGalleryItem", "Image", new { id = Model.ImageId})' />
+                        }
+                    </td>
+                </tr>
             </table>
 
-             <hr />
+            <hr />
 
-             <h4>
+            <h4>
                 <span>Поделитесь</span>
-             </h4>
+            </h4>
 
-             <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
-             <script src="//yastatic.net/share2/share.js"></script>
-             <div class="ya-share2" data-services="collections,vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,viber,whatsapp,skype" data-counter=""></div>
+            <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+            <script src="//yastatic.net/share2/share.js"></script>
+            <div class="ya-share2" data-services="collections,vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,viber,whatsapp,skype" data-counter=""></div>
+
+            @Html.Partial("_VisitsCounter")
         </div>
     </div>
 </div>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

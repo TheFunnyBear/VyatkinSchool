@@ -1,0 +1,50 @@
+#splashscreen {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #4C4532;
+    transition: 1s 0.4s;
+    font-family: monospace, serif;
+    font-size: 14px;
+}
+
+    #splashscreen #logo {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 150px;
+        height: 150px;
+        margin-top: -180px;
+        background: #4C4532;
+        font-family: monospace, serif;
+        font-size: 14px;
+    }
+
+    #splashscreen #progress {
+        height: 1px;
+        background: #fff;
+        position: absolute;
+        width: 0;
+        top: 50%;
+        transition: 1s;
+        font-family: monospace, serif;
+        font-size: 14px;
+    }
+
+    #splashscreen #status {
+        font-size: 0.7em;
+        letter-spacing: 3px;
+        position: absolute;
+        top: 50%;
+        margin-top: -40px;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        font-family: monospace, serif;
+        font-size: 14px;
+    }
+

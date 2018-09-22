@@ -5,7 +5,7 @@ namespace VyatkinSchool.Controllers
 {
     [Authorize]
     [RequireHttps]
-    public class HomeController : Controller
+    public class HomeController : SchoolBaseController
     {
         [AllowAnonymous]
         public ActionResult Index()
@@ -16,6 +16,7 @@ namespace VyatkinSchool.Controllers
         [AllowAnonymous]
         public ActionResult Contacts()
         {
+            IncrementPageCounters();
             var contactsViewModel = new Contacts();
             return View(contactsViewModel);
         }
@@ -23,6 +24,7 @@ namespace VyatkinSchool.Controllers
         [AllowAnonymous]
         public ActionResult TimeTable()
         {
+            IncrementPageCounters();
             return View();
         }
     }

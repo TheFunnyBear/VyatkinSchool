@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Контакты";
 }
+
+@Html.Partial("_SplashScreen")
+
 <div id="page">
     <div class="container">
         <div class="title">
@@ -34,7 +37,7 @@
                         <abbr title="Отсканируйте QR-код своим мобильным, чтобы получить контную информацию">QR код с контной информацией: </abbr> <br />
                         <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.QrCode))" />
                         <br />
-                        <abbr title="Скачать файл с контной информацией">Файл с контной информацией: </abbr> <i> @Html.ActionLink("скачать", "VCardFile") </i>
+                        <abbr title="Скачать файл с контной информацией">Файл с контной информацией: </abbr> @Html.ActionLink("скачать", "VCardFile")
                     </div>
                 </td>
             </tr>
@@ -60,9 +63,9 @@
             </tr>
         </table>
 
+        @Html.Partial("_VisitsCounter")
     </div>
 </div>
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -8,7 +8,7 @@ using VyatkinSchool.Models.IdentityModels;
 
 namespace VyatkinSchool.Controllers
 {
-    public sealed class VideoController : Controller
+    public sealed class VideoController : SchoolBaseController
     {
         // GET: Video
         [AllowAnonymous]
@@ -134,6 +134,8 @@ namespace VyatkinSchool.Controllers
         [AllowAnonymous]
         public ActionResult Show(int? page)
         {
+            IncrementPageCounters();
+
             using (var dataBase = new ApplicationDbContext())
             {
                 var pageNumber = page ?? 1;
@@ -158,6 +160,8 @@ namespace VyatkinSchool.Controllers
                 return RedirectToAction("Show", "Video");
             }
 
+            IncrementPageCounters();
+
             using (var dataBase = new ApplicationDbContext())
             {
                 var item = dataBase.Video.SingleOrDefault(videoFileItem => videoFileItem.Id == id);
@@ -172,6 +176,8 @@ namespace VyatkinSchool.Controllers
         //GET: /Video/List
         public ActionResult List(int? page)
         {
+            IncrementPageCounters();
+
             using (var dataBase = new ApplicationDbContext())
             {
                 var pageNumber = page ?? 1;

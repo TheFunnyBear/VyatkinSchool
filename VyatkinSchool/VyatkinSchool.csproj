@@ -232,6 +232,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\SchoolBaseController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -245,6 +246,14 @@
     <Compile Include="Migrations\201809141153494_Update1.cs" />
     <Compile Include="Migrations\201809141153494_Update1.Designer.cs">
       <DependentUpon>201809141153494_Update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809210755155_Update2.cs" />
+    <Compile Include="Migrations\201809210755155_Update2.Designer.cs">
+      <DependentUpon>201809210755155_Update2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809210800276_Update3.cs" />
+    <Compile Include="Migrations\201809210800276_Update3.Designer.cs">
+      <DependentUpon>201809210800276_Update3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AcountViewModels\ExternalLoginConfirmationViewModel.cs" />
@@ -273,6 +282,7 @@
     <Compile Include="Models\MessageItem.cs" />
     <Compile Include="Models\SixNews.cs" />
     <Compile Include="Models\VideoFileItem.cs" />
+    <Compile Include="Models\VisitsCounterItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -498,6 +508,7 @@
     <Content Include="Content\jquery.mobile.structure-1.4.5.min.css" />
     <Content Include="Content\jquery.mobile.theme-1.4.5.css" />
     <Content Include="Content\jquery.mobile.theme-1.4.5.min.css" />
+    <Content Include="Content\jquery.SplashScreen.css" />
     <Content Include="Content\Logo\logo.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
@@ -523,6 +534,7 @@
     <Content Include="Scripts\jquery.mobile-1.4.5.min.js" />
     <Content Include="Scripts\jquery.mobile-1.4.5.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.SplashScreen.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -614,6 +626,8 @@
     <Content Include="Views\Video\Show.Mobile.cshtml" />
     <Content Include="Views\Video\ShowItem.cshtml" />
     <Content Include="Views\Shared\_VideoPartial.cshtml" />
+    <Content Include="Views\Shared\_VisitsCounter.cshtml" />
+    <Content Include="Views\Shared\_SplashScreen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -638,6 +652,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809141153494_Update1.resx">
       <DependentUpon>201809141153494_Update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809210755155_Update2.resx">
+      <DependentUpon>201809210755155_Update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809210800276_Update3.resx">
+      <DependentUpon>201809210800276_Update3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

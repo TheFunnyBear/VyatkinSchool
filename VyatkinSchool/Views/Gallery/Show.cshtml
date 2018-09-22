@@ -8,6 +8,8 @@
     ViewBag.Title = "Галерея";
 }
 
+@Html.Partial("_SplashScreen")
+
 <div id="page">
     <div class="container">
         <div class="title">
@@ -22,44 +24,44 @@
             </tr>
 
             <tr>
-                <td align="center"  width ="1000">
+                <td align="center" width="1000">
 
                     @foreach (var pictureGroup in @Model)
                     {
                         <p>Альбом: <strong>@pictureGroup.GroupName</strong></p>
                         <div id="carouselId" class="carousel slide" data-ride="carousel" style="position:relative;z-index:1;">
                             <ol class="carousel-indicators" style="z-index:1 !important">
-                            @for (int galleryItemIndex = 0; galleryItemIndex < (int)ViewBag.ItemsCount; galleryItemIndex++)
-                            {
-                                if (galleryItemIndex == 0)
+                                @for (int galleryItemIndex = 0; galleryItemIndex < (int)ViewBag.ItemsCount; galleryItemIndex++)
                                 {
-                                    <li data-target="#carouselId" data-slide-to="@galleryItemIndex" class="active"></li>
+                                    if (galleryItemIndex == 0)
+                                    {
+                                        <li data-target="#carouselId" data-slide-to="@galleryItemIndex" class="active"></li>
+                                    }
+                                    else
+                                    {
+                                        <li data-target="#carouselId" data-slide-to="@galleryItemIndex"></li>
+                                    }
                                 }
-                                else
-                                {
-                                    <li data-target="#carouselId" data-slide-to="@galleryItemIndex"></li>
-                                }
-                            }
                             </ol>
                             <div class="carousel-inner" role="listbox">
-                            @for (int galleryItemIndex = 0; galleryItemIndex < (int)ViewBag.ItemsCount; galleryItemIndex++)
-                            {
-                                var galleryItem = (ViewBag.GalleryItems as List<GalleryItem>).ElementAt(galleryItemIndex);
-                                var classItem = (galleryItemIndex == 0) ? "item active" : "item";
-                                <div class="@classItem">
-                                    <img src='@Url.Action("show", "Image", new { id = galleryItem.ImageId})' />
-                                    <div class="carousel-caption">
-                                        @if (!string.IsNullOrWhiteSpace(galleryItem.Title))
-                                        {
-                                            <h3>@galleryItem.Title.Trim(' ')</h3>
-                                        }
-                                        @if (!string.IsNullOrWhiteSpace(galleryItem.Description))
-                                        {
-                                            <p>@galleryItem.Description.Trim(' ')</p>
-                                        }
+                                @for (int galleryItemIndex = 0; galleryItemIndex < (int)ViewBag.ItemsCount; galleryItemIndex++)
+                                {
+                                    var galleryItem = (ViewBag.GalleryItems as List<GalleryItem>).ElementAt(galleryItemIndex);
+                                    var classItem = (galleryItemIndex == 0) ? "item active" : "item";
+                                    <div class="@classItem">
+                                        <img src='@Url.Action("show", "Image", new { id = galleryItem.ImageId})' />
+                                        <div class="carousel-caption">
+                                            @if (!string.IsNullOrWhiteSpace(galleryItem.Title))
+                                            {
+                                                <h3>@galleryItem.Title.Trim(' ')</h3>
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(galleryItem.Description))
+                                            {
+                                                <p>@galleryItem.Description.Trim(' ')</p>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            }
+                                }
                             </div>
                         </div>
                     }
@@ -72,8 +74,11 @@
                 </td>
             </tr>
         </table>
+
+        @Html.Partial("_VisitsCounter")
     </div>
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
