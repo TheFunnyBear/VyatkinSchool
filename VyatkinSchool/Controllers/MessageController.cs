@@ -1,6 +1,7 @@
 ﻿using PagedList;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using VyatkinSchool.Models;
@@ -21,11 +22,11 @@ namespace VyatkinSchool.Controllers
 
         // GET: /Message/Show
         [AllowAnonymous]
-        public ActionResult Show(int? id)
+        public async Task<ActionResult> Show(int? id)
         {
             if (id != null)
             {
-                IncrementPageCounters();
+                await IncrementPageCounters();
 
                 using (var dataBase = new ApplicationDbContext())
                 {
@@ -216,9 +217,9 @@ namespace VyatkinSchool.Controllers
         }
 
         // GET: /Message/List
-        public ActionResult List(int? page)
+        public async Task<ActionResult> List(int? page)
         {
-            IncrementPageCounters();
+            await IncrementPageCounters();
 
             using (var dataBase = new ApplicationDbContext())
             {

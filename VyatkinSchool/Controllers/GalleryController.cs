@@ -1,5 +1,6 @@
 ﻿using PagedList;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using VyatkinSchool.Models;
@@ -137,9 +138,9 @@ namespace VyatkinSchool.Controllers
 
         // GET: /Gallery/Show
         [AllowAnonymous]
-        public ActionResult Show(int? page)
+        public async Task<ActionResult> Show(int? page)
         {
-            IncrementPageCounters();
+            await IncrementPageCounters();
             using (var dataBase = new ApplicationDbContext())
             {
                 var pageNumber = page ?? 1;
@@ -171,14 +172,14 @@ namespace VyatkinSchool.Controllers
 
         // GET: /Gallery/ShowItem
         [AllowAnonymous]
-        public ActionResult ShowItem(int? id)
+        public async Task<ActionResult> ShowItem(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction("Show", "Gallery");
             }
 
-            IncrementPageCounters();
+            await IncrementPageCounters();
             using (var dataBase = new ApplicationDbContext())
             {
                 var item = dataBase.Gallery.SingleOrDefault(galleryItem => galleryItem.Id == id);
@@ -192,9 +193,9 @@ namespace VyatkinSchool.Controllers
         }
 
         // GET: /Gallery/List
-        public ActionResult List(int? page)
+        public async Task<ActionResult> List(int? page)
         {
-            IncrementPageCounters();
+            await IncrementPageCounters();
 
             using (var dataBase = new ApplicationDbContext())
             {

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
 using VyatkinSchool.Models;
 
 namespace VyatkinSchool.Controllers
@@ -14,17 +15,17 @@ namespace VyatkinSchool.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Contacts()
+        public async Task<ActionResult> Contacts()
         {
-            IncrementPageCounters();
+            await IncrementPageCounters();
             var contactsViewModel = new Contacts();
             return View(contactsViewModel);
         }
 
         [AllowAnonymous]
-        public ActionResult TimeTable()
+        public async Task<ActionResult> TimeTable()
         {
-            IncrementPageCounters();
+            await IncrementPageCounters();
             return View();
         }
     }

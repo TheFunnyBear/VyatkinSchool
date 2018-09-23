@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace VyatkinSchool.Controllers
@@ -8,21 +9,21 @@ namespace VyatkinSchool.Controllers
         //
         // GET: /Error/
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            IncrementPageCounters();
+            await IncrementPageCounters();
             return RedirectToAction("GenericError", new HandleErrorInfo(new HttpException(403, "Don't allow access the error pages"), "ErrorController", "Index"));
         }
 
-        public ViewResult GenericError(HandleErrorInfo exception)
+        public async Task<ViewResult> GenericError(HandleErrorInfo exception)
         {
-            IncrementPageCounters();
+            await IncrementPageCounters();
             return View("Error", exception);
         }
 
-        public ViewResult NotFound(HandleErrorInfo exception)
+        public async Task<ViewResult> NotFound(HandleErrorInfo exception)
         {
-            IncrementPageCounters();
+            await IncrementPageCounters();
             ViewBag.Title = "Page Not Found";
             return View("Error", exception);
         }

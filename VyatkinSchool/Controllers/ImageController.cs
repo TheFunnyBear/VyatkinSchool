@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using VyatkinSchool.Models.IdentityModels;
 
@@ -10,9 +11,9 @@ namespace VyatkinSchool.Controllers
     public class ImageController : SchoolBaseController
     {
         [AllowAnonymous]
-        public ActionResult Show(int id)
+        public async Task<ActionResult> Show(int id)
         {
-            IncrementPageCounters();
+            await IncrementPageCounters();
             using (var dataBase = new ApplicationDbContext())
             {
                 var galleryItem = dataBase.Images.SingleOrDefault(item => item.Id == id);
@@ -22,9 +23,9 @@ namespace VyatkinSchool.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult ShowImageForGalleryItem(int id)
+        public async Task<ActionResult> ShowImageForGalleryItem(int id)
         {
-            IncrementPageCounters();
+            await IncrementPageCounters();
             using (var dataBase = new ApplicationDbContext())
             {
                 var gallery = dataBase.Gallery.SingleOrDefault(galleryItem => galleryItem.Id == id);
