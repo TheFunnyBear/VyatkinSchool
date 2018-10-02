@@ -171,7 +171,11 @@ namespace VyatkinSchool.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+#if registartionEnable
             return View();
+#else
+            return RedirectToAction("SixNews", "News");
+#endif
         }
 
         //
@@ -181,6 +185,7 @@ namespace VyatkinSchool.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+#if registartionEnable
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
@@ -202,6 +207,9 @@ namespace VyatkinSchool.Controllers
 
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
+#else
+            return RedirectToAction("SixNews", "News");
+#endif
         }
 
         //
@@ -457,7 +465,7 @@ namespace VyatkinSchool.Controllers
             base.Dispose(disposing);
         }
 
-        #region Вспомогательные приложения
+#region Вспомогательные приложения
         // Используется для защиты от XSRF-атак при добавлении внешних имен входа
         private const string XsrfKey = "XsrfId";
 
@@ -517,6 +525,6 @@ namespace VyatkinSchool.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
+#endregion
     }
 }
