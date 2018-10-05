@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using VyatkinSchool.Models;
@@ -12,6 +13,9 @@ namespace VyatkinSchool.Controllers
         {
             var absolutePath = HttpContext.Request.Url.AbsolutePath;
             ViewBag.VisitsCount = await IncrementPageCountersTask(absolutePath);
+
+            var remoteIpAddress = HttpContext.Request.UserHostAddress;
+            await AddUserHostAddressTask(remoteIpAddress);
         }
 
         async private Task<int> IncrementPageCountersTask(string absolutePath)
@@ -39,6 +43,30 @@ namespace VyatkinSchool.Controllers
                     }
                 }
                 return result;
+            });
+        }
+
+        async private Task AddUserHostAddressTask(string hostAddress)
+        {
+            await Task.Run(() =>
+            {
+                using (var dataBase = new ApplicationDbContext())
+                {
+                    var host = dataBase.UserHostsAddress.SingleOrDefault(userHostsAddress => userHostsAddress.HostAddress.Equals(hostAddress));
+                    if (host == null)
+                    {
+                        var userHostsAddress = new UserHostAddress();
+                        userHostsAddress.HostAddress = hostAddress;
+                        userHostsAddress.LastVisit = DateTime.Now;
+                        dataBase.UserHostsAddress.Add(userHostsAddress);
+                        dataBase.SaveChanges();
+                    }
+                    else
+                    {
+                        host.LastVisit = DateTime.Now;
+                        dataBase.SaveChanges();
+                    }
+                }
             });
         }
     }

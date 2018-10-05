@@ -252,6 +252,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\SchoolBaseController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -278,6 +279,14 @@
     <Compile Include="Migrations\201810021036078_Update4.Designer.cs">
       <DependentUpon>201810021036078_Update4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810030823021_Update5.cs" />
+    <Compile Include="Migrations\201810030823021_Update5.Designer.cs">
+      <DependentUpon>201810030823021_Update5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810051515434_Update6.cs" />
+    <Compile Include="Migrations\201810051515434_Update6.Designer.cs">
+      <DependentUpon>201810051515434_Update6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AcountViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\AcountViewModels\ExternalLoginListViewModel.cs" />
@@ -289,6 +298,7 @@
     <Compile Include="Models\AcountViewModels\SendCodeViewModel.cs" />
     <Compile Include="Models\AcountViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="Models\Contacts.cs" />
+    <Compile Include="Models\ContentType.cs" />
     <Compile Include="Models\GalleryGroupItem.cs" />
     <Compile Include="Models\GalleryItem.cs" />
     <Compile Include="Models\IdentityModels\ApplicationDbContext.cs" />
@@ -305,6 +315,9 @@
     <Compile Include="Models\MessageItem.cs" />
     <Compile Include="Models\PreviewItem.cs" />
     <Compile Include="Models\SixNews.cs" />
+    <Compile Include="Models\UserHostAddress.cs" />
+    <Compile Include="Models\UserSearchRequestItem.cs" />
+    <Compile Include="Models\UserSearchResultItem.cs" />
     <Compile Include="Models\VideoFileItem.cs" />
     <Compile Include="Models\VisitsCounterItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -653,6 +666,8 @@
     <Content Include="Views\Shared\_VideoPartial.cshtml" />
     <Content Include="Views\Shared\_VisitsCounter.cshtml" />
     <Content Include="Views\Shared\_SplashScreen.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -686,6 +701,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810021036078_Update4.resx">
       <DependentUpon>201810021036078_Update4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810030823021_Update5.resx">
+      <DependentUpon>201810030823021_Update5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810051515434_Update6.resx">
+      <DependentUpon>201810051515434_Update6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

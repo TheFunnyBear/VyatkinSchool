@@ -5,7 +5,6 @@ using VyatkinSchool.Models;
 
 namespace VyatkinSchool.Controllers
 {
-
     [Authorize]
     [RequireHttps]
     public class NewsController : SchoolBaseController

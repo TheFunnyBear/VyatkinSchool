@@ -1,7 +1,7 @@
 ﻿@model VyatkinSchool.Models.MessageItem
 
 <div class="box">
-    <img src='@Url.Action("ShowPreview", "Image", new { id = Model.ImageId })' width="300" hspace="5" alt="" />
+    <img src='@Url.Action("ShowPreview", "Image", new { id = Model.ImageId })' width="300" height="225" hspace="5" alt="" />
     <div class="details">
         <p><strong>@Model.Date</strong></p>
         <p>@Model.Title</p>

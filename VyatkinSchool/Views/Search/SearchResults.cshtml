@@ -1,0 +1,101 @@
+﻿@model IEnumerable<VyatkinSchool.Models.UserSearchResultItem>
+
+@{
+    ViewBag.Title = "Transactions history";
+
+}
+
+<br />
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        <h3>Искали: @ViewBag.SearchRequest </h3>
+
+        @if(Model.Count() == 0)
+        {
+            <h4>По вашему запросу ничего не найдено!</h4>
+        }
+        else
+        { 
+            <table id="dtHistory" class="table table-striped table-bordered table-sm sortable" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="th-sm" data-defaultsign="time">
+                            Тип контента
+                            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                        </th>
+                        <th class="th-sm" data-defaultsign="AZ">
+                            Заголовок
+                            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                        </th>
+                        <th class="th-sm" data-defaultsign="_19">
+                            Описание
+                            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                        </th>
+                        <th class="th-sm" data-defaultsign="_19">
+                            Навигация
+                            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @{
+                                if (item.ContntType == VyatkinSchool.Models.ContentType.News)
+                                {
+                                    @:Новости
+                                }
+                                if (item.ContntType == VyatkinSchool.Models.ContentType.Gallery)
+                                {
+                                    @:Галерея
+                                }
+                                if (item.ContntType == VyatkinSchool.Models.ContentType.Video)
+                                {
+                                    @:Видео
+                                }
+                            }
+                        </td>
+                        <td>@Html.Raw(@item.SearchTitle)</td>
+                        <td>@Html.Raw(@item.SearchText)</td>
+                        <td>
+                            <a href = "@Url.Action(@item.GetAction(), @item.GetController(), new { id = @item.ContentId })" class="btn btn-primary ">
+                            Перейти
+                            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+                            </a>
+
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>
+                            Тип контента
+                        </th>
+                        <th>
+                            Заголовок
+                        </th>
+                        <th>
+                            Описание
+                        </th>
+                        <th class="th-sm" data-defaultsign="_19">
+                            Навигация
+                            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

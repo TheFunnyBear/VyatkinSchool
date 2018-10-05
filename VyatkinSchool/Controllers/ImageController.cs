@@ -76,7 +76,7 @@ namespace VyatkinSchool.Controllers
                     fileContent = galleryItem.Image;
                     if(IsJpegOrPngImage(fileContent))
                     {
-                        var resizedImage = ResizeImage(fileContent, width: 300, height: 300);
+                        var resizedImage = ResizeImage(fileContent, width: 300, height: 225);
                         var resizedImageBytes = (byte[])new ImageConverter().ConvertTo(resizedImage, typeof(byte[]));
 
                         var previewItem = new PreviewItem();

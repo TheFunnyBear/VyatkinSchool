@@ -1,4 +1,5 @@
-﻿@model VyatkinSchool.Models.VideoFileItem
+﻿@using Microsoft.AspNet.Identity
+@model VyatkinSchool.Models.VideoFileItem
 @{
     ViewBag.Title = "Просмотр видео";
 }
@@ -9,16 +10,19 @@
             <h2>@ViewBag.Title.</h2>
         </div>
 
-        <hr />
-        <a href="@Url.Action("Show", "Video")" class="btn btn-primary">
-            Перейти к разделу "Видео"
-            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-        </a>
+        @if (Request.IsAuthenticated)
+        {
+            <hr />
+            <a href="@Url.Action("Show", "Video")" class="btn btn-primary">
+                Перейти к разделу "Видео"
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </a>
 
-        <a href="@Url.Action("List", "Video")" class="btn btn-primary">
-            Перейти к списку видео
-            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-        </a>
+            <a href="@Url.Action("List", "Video")" class="btn btn-primary">
+                Перейти к списку видео
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </a>
+        }
 
         <table border="0" align="center" cellpadding="5" cellspacing="0">
             <tr>

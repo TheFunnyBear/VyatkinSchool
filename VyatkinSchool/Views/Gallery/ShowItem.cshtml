@@ -1,4 +1,5 @@
 ﻿@using PagedList.Mvc;
+@using Microsoft.AspNet.Identity
 @using VyatkinSchool.Models
 
 @model VyatkinSchool.Models.GalleryItem
@@ -11,17 +12,21 @@
         <div class="title">
             <h2>@ViewBag.Title.</h2>
         </div>
+        
+        @if (Request.IsAuthenticated)
+        {
+            <hr />
+            <a href="@Url.Action("Show", "Gallery")" class="btn btn-primary">
+                Перейти к галлереи
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </a>
 
-        <hr />
-        <a href="@Url.Action("Show", "Gallery")" class="btn btn-primary">
-            Перейти к галлереи
-            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-        </a>
 
-        <a href="@Url.Action("List", "Gallery")" class="btn btn-primary">
-            Перейти к списку изображений
-            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-        </a>
+            <a href="@Url.Action("List", "Gallery")" class="btn btn-primary">
+                Перейти к списку изображений
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </a>
+        }
 
         <table border="0" align="center" cellpadding="5" cellspacing="0">
             <tr>
@@ -46,7 +51,7 @@
         <table border="0" align="center" cellpadding="5" cellspacing="0">
             <tr>
                 <td align="left">
-                    <p><img src='@Url.Action("show", "Image", new { id = Model.ImageId })' /></p>
+                    <p><img src='@Url.Action("show", "Image", new { id = Model.ImageId })' style="width:100%; height:auto;"/></p>
                 </td>
             </tr>
         </table>

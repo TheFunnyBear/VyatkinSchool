@@ -1,0 +1,68 @@
+﻿@model VyatkinSchool.Models.UserSearchRequestItem
+
+@{
+    ViewBag.Title = "Поиск";
+}
+
+<div id="page">
+    <div class="container">
+        <div class="title">
+            <h2>@ViewBag.Title.</h2>
+        </div>
+
+        @using (Html.BeginForm("Index", "Search", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal was-validated", role = "form" }))
+        {
+            <table border="0" align="center" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        @Html.LabelFor(m => m.SearchRequest)
+                    </td>
+                    <td width="60%">
+                        @Html.TextBoxFor(m => m.SearchRequest)
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%">
+                        @Html.LabelFor(m => m.SearchInNews)
+                    </td>
+                    <td width="60%">
+                        @Html.CheckBoxFor(m => m.SearchInNews)
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%">
+                        @Html.LabelFor(m => m.SearchInPhoto)
+                    </td>
+                    <td width="60%">
+                        @Html.CheckBoxFor(m => m.SearchInPhoto)
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%">
+                        @Html.LabelFor(m => m.SearchInVideo)
+                    </td>
+                    <td width="60%">
+                        @Html.CheckBoxFor(m => m.SearchInVideo)
+                    </td>
+                </tr>
+
+                <tr align="right">
+                    <td width="40%"></td>
+                    <td width="60%">
+                        <button class="btn btn-success" type="submit">
+                            Искать
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        }
+        @Html.Partial("_VisitsCounter")
+
+</div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
