@@ -28,6 +28,7 @@ namespace VyatkinSchool.Controllers
                 using (var dataBase = new ApplicationDbContext())
                 {
                     dataBase.UserSearchRequests.Add(viewModel);
+                    dataBase.SaveChanges();
 
                     if (viewModel.SearchInNews)
                     {
@@ -57,7 +58,7 @@ namespace VyatkinSchool.Controllers
                                 {
                                     ContntType = ContentType.Gallery,
                                     ContentId = galleryItem.Id,
-                                   // RequestId = viewModel.Id,
+                                    RequestId = viewModel.Id,
                                     SearchTitle = galleryItem.Title,
                                     SearchText = galleryItem.Description
                                 });
