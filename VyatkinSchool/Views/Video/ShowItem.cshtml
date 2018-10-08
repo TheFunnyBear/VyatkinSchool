@@ -47,6 +47,18 @@
             </tr>
         </table>
 
+        <table border="0" align="center" cellpadding="5" cellspacing="0">
+            <tr>
+                <td width="40%">Скачать:</td>
+                <td width="60%">
+                    <a href="@Url.Action("VideoFile", "Video", new { id = @Model.Id })" class="btn btn-primary">
+                        Скачать файл
+                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+        </table>
+
     </div>
 </div>
 

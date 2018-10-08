@@ -287,6 +287,10 @@
     <Compile Include="Migrations\201810051515434_Update6.Designer.cs">
       <DependentUpon>201810051515434_Update6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810081648157_Update7.cs" />
+    <Compile Include="Migrations\201810081648157_Update7.Designer.cs">
+      <DependentUpon>201810081648157_Update7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AcountViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\AcountViewModels\ExternalLoginListViewModel.cs" />
@@ -318,6 +322,7 @@
     <Compile Include="Models\UserHostAddress.cs" />
     <Compile Include="Models\UserSearchRequestItem.cs" />
     <Compile Include="Models\UserSearchResultItem.cs" />
+    <Compile Include="Models\VideoDownloadCounterItem.cs" />
     <Compile Include="Models\VideoFileItem.cs" />
     <Compile Include="Models\VisitsCounterItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -707,6 +712,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810051515434_Update6.resx">
       <DependentUpon>201810051515434_Update6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810081648157_Update7.resx">
+      <DependentUpon>201810081648157_Update7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

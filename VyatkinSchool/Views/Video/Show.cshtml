@@ -46,13 +46,21 @@
                             </div>
                         </td>
                     </tr>
-                }
-                <tr>
-                    <td align="center">
-                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Show", new { page }))
-                    </td>
-                </tr>
-            </table>
+                    <tr>
+                        <td align="center">
+                            <a href="@Url.Action("VideoFile", "Video", new { id = @videoFile.Id })" class="btn btn-primary">
+                                Скачать файл
+                                <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                    </tr>
+                  }
+                    <tr>
+                        <td align="center">
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Show", new { page }))
+                        </td>
+                    </tr>
+                </table>
         }
 
         @Html.Partial("_VisitsCounter")

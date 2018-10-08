@@ -35,6 +35,7 @@ namespace VyatkinSchool.Models.IdentityModels
         public virtual DbSet<VideoFileItem> Video { get; set; }
         public virtual DbSet<ImageItem> Images { get; set; }
         public virtual DbSet<VisitsCounterItem> VisitsCounters { get; set; }
+        public virtual DbSet<VideoDownloadCounterItem> VideoDownloadsCounters { get; set; }
         public virtual DbSet<PreviewItem> PreviewItems { get; set; }
         public virtual DbSet<UserHostAddress> UserHostsAddress { get; set; }
         public virtual DbSet<UserSearchRequestItem> UserSearchRequests { get; set; }

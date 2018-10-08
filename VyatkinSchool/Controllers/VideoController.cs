@@ -1,4 +1,5 @@
 ﻿using PagedList;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -251,6 +252,47 @@ namespace VyatkinSchool.Controllers
 
             //Successfully deleted 
             return View("Modified", viewModel);
+        }
+
+        [HttpGet]
+        public FileStreamResult VideoFile(int? id)
+        {
+            if (id != null)
+            {
+                using (var dataBase = new ApplicationDbContext())
+                {
+                    var videoItem = dataBase.Video.SingleOrDefault(video => video.Id == id);
+                    if (videoItem != null)
+                    {
+                        var videoCounterItem = dataBase.VideoDownloadsCounters.SingleOrDefault(videoCounter => videoCounter.Id == id);
+                        if (videoCounterItem == null)
+                        {
+                            var videoDownloadCounterItem = new VideoDownloadCounterItem();
+                            videoDownloadCounterItem.VideoFileId = (int)id;
+                            videoDownloadCounterItem.DownloadCount = 1;
+                            videoDownloadCounterItem.LastDownload = DateTime.Now;
+                            dataBase.VideoDownloadsCounters.Add(videoDownloadCounterItem);
+                        }
+                        else
+                        {
+                            videoCounterItem.DownloadCount++;
+                            videoCounterItem.LastDownload = DateTime.Now;
+                        }
+                        dataBase.SaveChanges();
+
+                        var serverFilePath = Server.MapPath(videoItem.FilePath);
+                        var fileStream = new FileStream(serverFilePath, FileMode.Open, FileAccess.Read);
+
+                        var fileStreamResult = new FileStreamResult(fileStream, MimeMapping.GetMimeMapping(serverFilePath))
+                        {
+                            FileDownloadName = videoItem.Name
+                        };
+                        return fileStreamResult;
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }
