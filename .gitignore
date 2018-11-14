@@ -16,3 +16,7 @@ VyatkinSchool/Properties/PublishProfiles/
 ConnectionStrings\.txt
 
 Gallery\.txt
+/VyatkinSchool/App_Data/aspnet-VyatkinSchool-20180822082141_log.ldf
+/VyatkinSchool/App_Data/aspnet-VyatkinSchool-20180822082141.mdf
+
+VyatkinSchool/VyatkinSchoolLog/
