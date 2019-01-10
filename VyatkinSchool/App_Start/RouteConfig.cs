@@ -11,6 +11,12 @@ namespace VyatkinSchool
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapRoute(
+                name: "sitemap",
+                url: "sitemap.xml",
+                defaults: new { controller = "SiteMap", action = "GetSiteMap" }
+            );
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(

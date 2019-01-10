@@ -253,12 +253,15 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\SchoolBaseController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SiteMapController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Log.cs" />
     <Compile Include="Helpers\MenuExtensions.cs" />
+    <Compile Include="Helpers\SitemapGenerator.cs" />
+    <Compile Include="Helpers\UrlHelperExtensions.cs" />
     <Compile Include="Migrations\201808271846460_InitialCreate.cs" />
     <Compile Include="Migrations\201808271846460_InitialCreate.Designer.cs">
       <DependentUpon>201808271846460_InitialCreate.cs</DependentUpon>
@@ -677,6 +680,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Error\" />
+    <Folder Include="Views\SiteMap\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
