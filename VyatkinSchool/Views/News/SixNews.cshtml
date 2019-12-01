@@ -23,7 +23,7 @@
         <table border="0" align="center" cellpadding="2" cellspacing="0">
             <tr>
                 <td align="center">
-                    @Html.PagedListPager((IPagedList)@Model.OnePageOfMessages, page => Url.Action("Index", new { page }))
+                    @Html.PagedListPager((IPagedList)@Model.OnePageOfMessages, page => Url.Action("SixNews", new { page }))
                 </td>
             </tr>
 
@@ -77,7 +77,7 @@
 
             <tr>
                 <td align="center">
-                    @Html.PagedListPager((IPagedList)@Model.OnePageOfMessages, page => Url.Action("Index", new { page }))
+                    @Html.PagedListPager((IPagedList)@Model.OnePageOfMessages, page => Url.Action("SixNews", new { page }))
                 </td>
             </tr>
         </table>
